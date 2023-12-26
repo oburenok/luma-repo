@@ -1,6 +1,0 @@
-12/24/2023 02:51:02 AM - Custom Logger - INFO: Preparing driver.
-12/24/2023 02:51:02 AM - Custom Logger - INFO: Starting browser 'edge'.
-12/24/2023 02:51:03 AM - Custom Logger - INFO: Navigating to start page: https://magento.softwaretestingboard.com/
-12/24/2023 02:51:06 AM - Custom Logger - INFO: Screenshot: C:\Users\oburenok\PycharmProjects\Luma\reports\screenshots\20231224_025106393830_CRITICAL.png
-12/24/2023 02:51:06 AM - Custom Logger - CRITICAL: It is critical message.
-12/24/2023 02:51:06 AM - Custom Logger - INFO: C:\Users\oburenok\PycharmProjects\Luma\reports
