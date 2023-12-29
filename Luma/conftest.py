@@ -2,6 +2,7 @@
 All main fixtures for automation framework are located here
 """
 import pytest
+import os
 
 from config.read_config import GetConfig
 from utils.start_browser import RunBrowser
@@ -25,7 +26,9 @@ def driver():
 
     # Start browser for testing
     log.message("Preparing driver.")
-    browse_driver = RunBrowser(globl.browser, globl.url)
-    yield browse_driver.driver
+    browser_instance = RunBrowser(globl.browser, globl.url)
 
-    browse_driver.driver.quit()
+    yield browser_instance.driver
+
+    browser_instance.driver.quit()
+    log.close_logger()

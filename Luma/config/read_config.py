@@ -42,7 +42,7 @@ class GetConfig:
 
     def read_all_sections(self):
         self.read_environment_section()
-        self.read_test_section()
+        # self.read_test_section()
         self.read_project_section()
 
     def read_environment_section(self):
@@ -61,11 +61,7 @@ class GetConfig:
         from section [Test]
         """
 
-        globl.test_name = "Report_Name_should_be_setup"
-        # globl.test_name = sys.path[0]
-        # globl.test_name = inspect.currentframe()
-        # globl.test_name = os.path.abspath(__file__)
-        print(os.path.abspath(sys.argv[0]))
+        globl.test_name = self.config['Test']['test_name']
 
     def read_project_section(self):
         """

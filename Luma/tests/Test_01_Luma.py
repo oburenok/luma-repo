@@ -8,6 +8,7 @@ from utils import globl, log
 
 
 def test_01(driver):
+    globl.test_name = 'Test_01_Luma'
     time.sleep(1)
 
     # driver.get("https://magento.softwaretestingboard.com/what-is-new.html")

@@ -7,7 +7,6 @@ browser = None
 
 
 # List of test parameters
-test_name = None
 test_path = None
 test_name = None
 

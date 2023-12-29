@@ -131,3 +131,13 @@ def critical(msg):
     screenshot("CRITICAL")
     logger.critical(str(msg))
 
+
+def close_logger():
+    """
+    This function close logger
+
+    :return:
+            Nothing
+    """
+    logging.shutdown()
+
