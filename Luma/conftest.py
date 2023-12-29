@@ -14,8 +14,8 @@ def pytest_configure():
     pytest.url = "https://google.com.ua"
 
 
-@pytest.fixture(scope="module")
-def driver():
+@pytest.fixture(scope="class")
+def driver(request):
 
     # Get configuration settings
     config = GetConfig()
@@ -27,6 +27,7 @@ def driver():
     # Start browser for testing
     log.message("Preparing driver.")
     browser_instance = RunBrowser(globl.browser, globl.url)
+    request.cls.driver = browser_instance.driver
 
     yield browser_instance.driver
 
