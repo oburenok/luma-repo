@@ -2,20 +2,19 @@
 All main fixtures for automation framework are located here
 """
 import pytest
-import os
 
 from config.read_config import GetConfig
 from utils.start_browser import RunBrowser
 from utils import globl, log
 
 
-def pytest_configure():
-    pytest.browser = "Some browser"
-    pytest.url = "https://google.com.ua"
-
-
 @pytest.fixture(scope="class")
 def driver(request):
+    """
+    This fixture reads config file, setup logging and starts appropriate webbrowser.
+    :param request: pytest fixture
+    :return:
+    """
 
     # Get configuration settings
     config = GetConfig()
@@ -29,7 +28,7 @@ def driver(request):
     browser_instance = RunBrowser(globl.browser, globl.url)
     request.cls.driver = browser_instance.driver
 
-    yield browser_instance.driver
+    yield
 
     browser_instance.driver.quit()
     log.close_logger()

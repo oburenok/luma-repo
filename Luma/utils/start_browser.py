@@ -4,9 +4,9 @@ At this moment, three different browser can be started:
     Chrome, Firefox, Edge
 """
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service as FFService
-from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.firefox.service import Service as FFService
 
 from utils import log
 
@@ -27,7 +27,10 @@ class RunBrowser:
         :return:
         """
         log.message(f"Starting browser '{browser}'.")
-        browse_drivers = {'chrome': self.run_chrome, 'firefox': self.run_firefox, 'edge': self.run_edge}
+        browse_drivers = {'chrome': self.run_chrome,
+                          'firefox': self.run_firefox,
+                          'edge': self.run_edge}
+
         self.driver = browse_drivers[browser]()
 
         log.message(f"Navigating to start page: {self.url}")

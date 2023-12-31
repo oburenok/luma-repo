@@ -2,16 +2,14 @@
 Logging and settings
 """
 
+import datetime as dt
 import logging
 import os
-import datetime as dt
 import pyautogui
-
 
 from utils import globl
 
-
-logger_name = "Custom Logger"
+LOGGER_NAME = "Custom Logger"
 
 
 def custom_logger(log_level=logging.INFO):
@@ -24,8 +22,8 @@ def custom_logger(log_level=logging.INFO):
             logger
     """
     # Gets the name of the class / method from where this method is called
-    # logger_name = inspect.stack()[1][3]
-    logger = logging.getLogger(logger_name)
+    # LOGGER_NAME = inspect.stack()[1][3]
+    logger = logging.getLogger(LOGGER_NAME)
 
     # By default, log all messages
     logger.setLevel(logging.DEBUG)
@@ -43,12 +41,11 @@ def custom_logger(log_level=logging.INFO):
     return logger
 
 
-def screenshot(suffix='', **kwargs):
+def screenshot(suffix=''):
     """
     This function takes screenshot and saves in the report folder
     :param suffix: suffix added to the file name. Should not have blank spaces.
     :type suffix: str
-    :param kwargs:
 
     :return:
             screenshot_full_path: str - full path to screenshot file
@@ -86,7 +83,7 @@ def message(msg):
     :return:
             Nothing
     """
-    logger = logging.getLogger(logger_name)
+    logger = logging.getLogger(LOGGER_NAME)
     logger.info(str(msg))
 
 
@@ -98,7 +95,7 @@ def warning(msg):
     :return:
             Nothing
     """
-    logger = logging.getLogger(logger_name)
+    logger = logging.getLogger(LOGGER_NAME)
 
     screenshot("WARNING")
     logger.warning(str(msg))
@@ -112,7 +109,7 @@ def error(msg):
     :return:
             Nothing
     """
-    logger = logging.getLogger(logger_name)
+    logger = logging.getLogger(LOGGER_NAME)
 
     screenshot("ERROR")
     logger.error(str(msg))
@@ -126,7 +123,7 @@ def critical(msg):
     :return:
             Nothing
     """
-    logger = logging.getLogger(logger_name)
+    logger = logging.getLogger(LOGGER_NAME)
 
     screenshot("CRITICAL")
     logger.critical(str(msg))
@@ -134,10 +131,9 @@ def critical(msg):
 
 def close_logger():
     """
-    This function close logger
+    This function closes logger
 
     :return:
             Nothing
     """
     logging.shutdown()
-

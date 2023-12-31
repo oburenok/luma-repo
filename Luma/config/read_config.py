@@ -4,8 +4,6 @@ This module contains all methods which reads/fetches configuration settings for 
 
 import configparser
 import os
-import sys
-import inspect
 
 from utils import globl
 
@@ -35,12 +33,16 @@ class GetConfig:
 
         if path[-len_name:] == globl.project_name:
             globl.project_path = path
-            return True
+            return path
         else:
             path = os.path.split(path)[0]
             self.get_project_path(path)
 
     def read_all_sections(self):
+        """
+        This method reads all sections from configuration .ini file
+        :return:
+        """
         self.read_environment_section()
         # self.read_test_section()
         self.read_project_section()
