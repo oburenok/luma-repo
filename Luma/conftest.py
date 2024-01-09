@@ -37,9 +37,9 @@ def driver(request):
 
 
 @pytest.fixture(scope="function", autouse=True)
-def log_separator():
+def test_separator():
     """
-    This fixture separates test mothods in log file
+    This fixture separates test mothods in log file and resets test counters
     :return:
             Nothing
     """
