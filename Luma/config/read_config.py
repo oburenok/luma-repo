@@ -44,7 +44,7 @@ class GetConfig:
         :return:
         """
         self.read_environment_section()
-        # self.read_test_section()
+        self.read_test_section()
         self.read_project_section()
 
     def read_environment_section(self):
@@ -63,7 +63,8 @@ class GetConfig:
         from section [Test]
         """
 
-        globl.test_name = self.config['Test']['test_name']
+        globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3]
+        # globl.test_method_name = os.environ.get('PYTEST_CURRENT_TEST').split('::')[-1].split(' ')[0]
 
     def read_project_section(self):
         """

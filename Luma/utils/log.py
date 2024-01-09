@@ -100,6 +100,8 @@ def warning(msg):
     screenshot("WARNING")
     logger.warning(str(msg))
 
+    globl.test_counters['total_warnings'] += 1
+
 
 def error(msg):
     """
@@ -114,6 +116,8 @@ def error(msg):
     screenshot("ERROR")
     logger.error(str(msg))
 
+    globl.test_counters['total_errors'] += 1
+
 
 def critical(msg):
     """
@@ -127,6 +131,8 @@ def critical(msg):
 
     screenshot("CRITICAL")
     logger.critical(str(msg))
+
+    globl.test_counters['total_exceptions'] += 1
 
 
 def close_logger():
