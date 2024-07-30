@@ -15,6 +15,8 @@ class BasePage(ABCPage):
         self.url = url
         self.actions = ActionChains(driver)
 
+        self.category_menu = CategoryMenu(self.driver, self.url)
+
     def enter_text_in_search_field(self, text: str):
         """
         Enters text in search field
@@ -81,3 +83,74 @@ class BasePage(ABCPage):
     def click_view_and_edit_cart(self):
         log.message("Method click_view_and_edit_cart() should be defined!!!!")
 
+
+class CategoryMenu:
+
+    def __init__(self, driver: webdriver.Firefox, url: str):
+        self.driver = driver
+        self.url = url
+        self.actions = ActionChains(driver)
+        self.init_fields()
+
+    def init_fields(self):
+        """
+        Initialize all elements/fields related to Category Menu
+        :return:
+        """
+        self.locators = {
+            "watsnew": "//a[@id='ui-id-3']",
+            "woman": "//a[@id='ui-id-4']",
+            "wtops": "//a[@id='ui-id-9']",
+            "wjackets": "//a[@id='ui-id-11']",
+            "whoodies&sweatshirts": "//a[@id='ui-id-12']",
+            "wtees": "//a[@id='ui-id-13']",
+            "wbras&tanks": "//a[@id='ui-id-14']",
+            "wbottoms": "//a[@id='ui-id-10']",
+            "wpants": "//a[@id='ui-id-15']",
+            "wshorts": "//a[@id='ui-id-16']",
+
+            "man": "//a[@id='ui-id-5']",
+            "mtops": "//a[@id='ui-id-17']",
+            "mjackets": "//a[@id='ui-id-19']",
+            "mhoodies&sweatshirts": "//a[@id='ui-id-20']",
+            "mtees": "//a[@id='ui-id-21']",
+            "tanks": "//a[@id='ui-id-22']",
+            "mbottoms": "//a[@id='ui-id-18']",
+            "mpants": "//a[@id='ui-id-23']",
+            "mshorts": "//a[@id='ui-id-24']",
+
+            "gear": "//a[@id='ui-id-6']",
+            "bags": "//a[@id='ui-id-25']",
+            "fitnessequipment": "//a[@id='ui-id-26']",
+            "Watches": "//a[@id='ui-id-27']",
+
+            "training": "//a[@id='ui-id-7']",
+            "sale": "//a[@id='ui-id-8']"
+        }
+
+    def navigate_to_category(self, category_path, click=True):
+        """
+        Navigate to category
+
+        :param category_path: path to needed product category
+        :type category_path: str
+        :param click: define if menu item should be clicked or not
+        :type click: bool
+
+        :return:
+        """
+        log.message(f"Navigating to category menu '{category_path}'.")
+        for item in category_path.split(" "):
+            menu_item = self.driver.find_element(By.XPATH, self.locators[item])
+
+            for iteration in range(10):
+                if menu_item.is_displayed():
+                    self.actions.move_to_element(menu_item).perform()
+                    break
+                else:
+                    time.sleep(0.5)
+            else:
+                log.warning(f"Menu item is not displayed or missing.")
+
+            if click is True and item == category_path.split(" ")[-1]:
+                menu_item.click()

@@ -1,7 +1,7 @@
 """
 Logging and settings
 """
-
+import datetime
 import datetime as dt
 import logging
 import os
@@ -21,14 +21,19 @@ def custom_logger(log_level=logging.INFO):
     :return:
             logger
     """
-    # Gets the name of the class / method from where this method is called
-    # LOGGER_NAME = inspect.stack()[1][3]
     logger = logging.getLogger(LOGGER_NAME)
 
     # By default, log all messages
     logger.setLevel(logging.DEBUG)
 
-    report_path = globl.reports_path + '\\' + globl.test_name + '.log'
+    test_report_dir = globl.reports_path + '\\' + globl.test_name
+
+    if not os.path.isdir(test_report_dir):
+        os.makedirs(test_report_dir)
+
+    now = datetime.datetime.now()
+
+    report_path = test_report_dir + '\\' + globl.test_name + now.strftime("_%Y%m%d_%H%M%S") + '.log'
 
     file_handler = logging.FileHandler(report_path, mode='a')
     file_handler.setLevel(log_level)
