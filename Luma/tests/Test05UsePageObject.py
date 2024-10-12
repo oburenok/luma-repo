@@ -45,6 +45,6 @@ class Test05UsePageObject:
         log.step("1.001", "Verify product.")
         self.results_page.verify_product()
 
-        log.step("1.002", "Count products.")
-        self.results_page.count_products()
+        log.step("1.002", "Count products on results page.")
+        self.results_page.count_products(5)
 
