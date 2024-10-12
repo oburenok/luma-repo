@@ -5,8 +5,11 @@ This is a test for commercial website Luma.
 import time
 import pytest
 
-from pages.main.base import BasePage
+from pages.home_page.home_page import HomePage
+from pages.results_page.results_page import ResultsPage
 from utils import log
+
+pytestmark = [pytest.mark.integration, pytest.mark.sanity]
 
 
 @pytest.mark.usefixtures("driver")
@@ -14,7 +17,7 @@ class Test05UsePageObject:
 
     @pytest.mark.sanity
     def test_01_use_base_page_object(self):
-        self.home_page = BasePage(self.driver, "https://magento.softwaretestingboard.com/what-is-new.html")
+        self.home_page = HomePage(self.driver, self.url)
 
         log.message("Search product.")
         self.home_page.enter_text_in_search_field("Bag")
@@ -22,28 +25,26 @@ class Test05UsePageObject:
 
         log.message("Navigate to category menus.")
         self.home_page.category_menu.navigate_to_category("woman wtops wjackets")
-        time.sleep(2)
+        time.sleep(1)
 
         self.home_page.category_menu.navigate_to_category("man mtops mtees", click=False)
-        time.sleep(2)
+        time.sleep(1)
 
         self.home_page.category_menu.navigate_to_category("gear fitnessequipment")
+        time.sleep(1)
+
+    @pytest.mark.smoke
+    def test_02_navigation_to_google(self):
+        self.results_page = ResultsPage(self.driver, self.url)
+
+        log.message("Search product.")
+        self.results_page.enter_text_in_search_field("Watch")
+        self.results_page.click_search()
         time.sleep(2)
 
-    # @pytest.mark.skip()
-    # def test_02_navigation_to_google(self):
-    #     self.driver.get("https://www.google.com.ua")
-    #     log.message("bla-bla-bla")
-    #     log.message("Some comments")
-    #     log.message("bla-bla-bla")
-    #     log.message("Some comments")
-    #
-    #     log.warning("It is warning message.")
-    #     log.warning("It is warning message.")
-    #
-    #     log.message("Add more comments")
-    #     log.message("to simulate testing process.")
-    #
-    #     # log.critical("Log critical to increase critical counter.")
-    #     # time.sleep(1.5)
+        log.step("1.001", "Verify product.")
+        self.results_page.verify_product()
+
+        log.step("1.002", "Count products.")
+        self.results_page.count_products()
 
