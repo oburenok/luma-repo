@@ -6,7 +6,7 @@ class ABCPage(abc.ABC):
     This is abstract class for all pages
     """
     @abc.abstractmethod
-    def sign_in(self):
+    def logout(self):
         pass
 
     @abc.abstractmethod
@@ -49,3 +49,15 @@ class ABCPage(abc.ABC):
     def wait_loading_page(self):
         pass
 
+
+class ABCLoginPage(abc.ABC):
+    """
+    This is abstract class for login page
+    """
+    @abc.abstractmethod
+    def login(self):
+        pass
+
+    @abc.abstractmethod
+    def restore_password(self):
+        pass
