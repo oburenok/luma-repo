@@ -92,6 +92,22 @@ def message(msg):
     logger.info(str(msg))
 
 
+def step(step_number, step_description):
+    """
+    This function adding a step number and step description in the log file
+    :param step_number: Step number
+    :type step_number: str
+    :param step_description: Step description
+    :type step_description: str
+    :return:
+            Nothing
+    Example:
+
+    """
+    logger = logging.getLogger(LOGGER_NAME)
+    logger.info(step_number + " : " + step_description)
+
+
 def warning(msg):
     """
     This function adding warning message in the log file with log level WARNING
@@ -122,6 +138,22 @@ def error(msg):
     logger.error(str(msg))
 
     globl.test_counters['total_errors'] += 1
+
+
+def exception(msg):
+    """
+    This function adding exception message in the log file with log level EXCEPTION
+    :param msg: message to be logged
+    :type msg: str
+    :return:
+            Nothing
+    """
+    logger = logging.getLogger(LOGGER_NAME)
+
+    screenshot("EXCEPTION")
+    logger.exception(str(msg))
+
+    globl.test_counters['total_exceptions'] += 1
 
 
 def critical(msg):
