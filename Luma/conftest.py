@@ -29,6 +29,7 @@ def driver(request):
     log.message("Preparing driver.")
     browser_instance = RunBrowser(globl.browser, globl.url)
     request.cls.driver = browser_instance.driver
+    request.cls.url = globl.url
 
     yield
 
