@@ -27,6 +27,10 @@ class BasePage(ABCPage):
         """
         elem_search_field = self.driver.find_element(By.XPATH, "//input[@id='search']")
 
+        log.message("Clean up search field.")
+        elem_search_field.send_keys(Keys.CONTROL + 'a')
+        elem_search_field.send_keys(Keys.DELETE)
+
         log.message(f"Enter text '{text}' in search field.")
         self.actions.move_to_element(elem_search_field).click().send_keys(text).perform()
 
@@ -83,6 +87,9 @@ class BasePage(ABCPage):
     def click_view_and_edit_cart(self):
         log.message("Method click_view_and_edit_cart() should be defined!!!!")
 
+    def logout(self):
+        log.message("Method logout() should be defined!!!!")
+
 
 class CategoryMenu:
 
@@ -137,6 +144,8 @@ class CategoryMenu:
         :param click: define if menu item should be clicked or not
         :type click: bool
 
+        Example:
+                self.home_page.category_menu.navigate_to_category("woman wtops wjackets")
         :return:
         """
         log.message(f"Navigating to category menu '{category_path}'.")
