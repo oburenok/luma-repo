@@ -48,3 +48,4 @@ class Test05UsePageObject:
         log.step("1.002", "Count products on results page.")
         self.results_page.count_products(5)
 
+
