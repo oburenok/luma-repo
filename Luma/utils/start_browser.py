@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.firefox.service import Service as FFService
 
-from utils import log
+from utils import log, globl
 
 
 class RunBrowser:
@@ -69,8 +69,8 @@ class RunBrowser:
                 Browse WebDriver
         """
         chrome_service = ChromeService(
-            executable_path="C:\\Users\\oburenok\\PycharmProjects\\Luma\\drivers" +
-                            "\\chrome\\chromedriver.exe")
+            executable_path=globl.project_path + globl.driver_chrome_path)
+
         driver = webdriver.Chrome(service=chrome_service)
 
         return driver

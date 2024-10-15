@@ -21,6 +21,7 @@ test_counters = {'total_checkpoints': 0,
 project_name = 'Luma'
 project_path = None  # 'C:\\Users\\oburenok\\PycharmProjects\\Luma'
 reports_path = None
+driver_chrome_path = '\\drivers\\chrome\\chromedriver.exe'
 
 
 # Parameters Jenkins
