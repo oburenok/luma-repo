@@ -15,7 +15,6 @@ class GetConfig:
     """
 
     def __init__(self):
-        print("============ os.getcwd() returns this: " + os.getcwd())
         self.get_project_path(os.getcwd())
         self.config = configparser.ConfigParser()
         self.config.read(globl.project_path + '\\config\\standart_env_config.ini')
@@ -33,6 +32,7 @@ class GetConfig:
 
         if globl.run_jenkins:
             globl.project_path = path + '\\' + globl.project_name
+            print("\n============  globl.project_path is: " + globl.project_path)
             return globl.project_path
 
         if path[-len_name:] == globl.project_name:

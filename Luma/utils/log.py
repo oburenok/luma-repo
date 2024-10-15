@@ -36,6 +36,7 @@ def custom_logger(log_level=logging.INFO):
     now = datetime.datetime.now()
 
     report_path = test_report_dir + '\\' + globl.test_name + now.strftime("_%Y%m%d_%H%M%S") + '.log'
+    print("\n============  report_path is: " + report_path)
 
     file_handler = logging.FileHandler(report_path, mode='a')
     file_handler.setLevel(log_level)
