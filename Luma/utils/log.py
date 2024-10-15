@@ -31,6 +31,8 @@ def custom_logger(log_level=logging.INFO):
     if not os.path.isdir(test_report_dir):
         os.makedirs(test_report_dir)
 
+    globl.test_report_path = test_report_dir
+
     now = datetime.datetime.now()
 
     report_path = test_report_dir + '\\' + globl.test_name + now.strftime("_%Y%m%d_%H%M%S") + '.log'
@@ -63,7 +65,7 @@ def screenshot(suffix=''):
         suffix = '_' + str(suffix)
 
     file_name = date_stamp + '_' + time_stamp + suffix.replace(' ', '') + '.png'
-    file_path = globl.reports_path + '\\screenshots\\'
+    file_path = globl.test_report_path + '\\screenshots\\'
 
     screenshot_full_path = file_path + file_name
 
