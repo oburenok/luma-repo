@@ -17,7 +17,12 @@ test_counters = {'total_checkpoints': 0,
                  'total_exceptions': 0}
 
 
-# List of project parameers
+# List of project parameters
 project_name = 'Luma'
 project_path = None  # 'C:\\Users\\oburenok\\PycharmProjects\\Luma'
 reports_path = None
+
+
+# Parameters Jenkins
+run_jenkins = True
+# project_path for Jenkins will be C:\Users\oburenok\.jenkins\workspace\Selenium Python GitHub\Luma
