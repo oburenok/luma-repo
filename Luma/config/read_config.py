@@ -67,7 +67,10 @@ class GetConfig:
         from section [Test]
         """
 
-        globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3]
+        if globl.run_jenkins:
+            globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3].split('/')[-1]
+        else:
+            globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3]
         print("\n============  globl.test_name is: " + globl.test_name)
         # globl.test_method_name = os.environ.get('PYTEST_CURRENT_TEST').split('::')[-1].split(' ')[0]
 
