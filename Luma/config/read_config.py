@@ -15,7 +15,8 @@ class GetConfig:
     """
 
     def __init__(self):
-        globl.project_name = 'Luma'  # This is constant variable
+        # globl.project_name = 'Luma'  # This is constant variable
+        print("============ os.getcwd() returns this: " + os.getcwd())
         self.get_project_path(os.getcwd())
         self.config = configparser.ConfigParser()
         self.config.read(globl.project_path + '\\config\\standart_env_config.ini')
