@@ -17,6 +17,6 @@ test_counters = {'total_checkpoints': 0,
 
 
 # List of project parameers
-project_name = None
+project_name = 'Luma'
 project_path = None  # 'C:\\Users\\oburenok\\PycharmProjects\\Luma'
 reports_path = None
