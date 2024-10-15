@@ -43,8 +43,7 @@ class RunBrowser:
         :return:
                 Browse WebDriver
         """
-        ff_service = FFService(executable_path="C:\\Users\\oburenok\\PycharmProjects\\Luma" +
-                                               "\\drivers\\firefox\\geckodriver.exe")
+        ff_service = FFService(executable_path=globl.project_path + globl.driver_firefox_path)
         driver = webdriver.Firefox(service=ff_service)
 
         return driver
@@ -56,8 +55,7 @@ class RunBrowser:
                 Browse WebDriver
         """
         edge_service = EdgeService(
-            executable_path="C:\\Users\\oburenok\\PycharmProjects\\Luma\\drivers" +
-                            "\\edge\\msedgedriver.exe")
+            executable_path=globl.project_path + globl.driver_edge_path)
         driver = webdriver.Edge(service=edge_service)
 
         return driver
