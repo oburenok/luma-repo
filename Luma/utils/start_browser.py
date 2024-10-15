@@ -66,7 +66,6 @@ class RunBrowser:
         :return:
                 Browse WebDriver
         """
-        print("\n============  globl.project_path + globl.driver_chrome_path are: " + globl.project_path + globl.driver_chrome_path)
         chrome_service = ChromeService(
             executable_path=globl.project_path + globl.driver_chrome_path)
 
