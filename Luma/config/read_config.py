@@ -32,7 +32,6 @@ class GetConfig:
 
         if globl.run_jenkins:
             globl.project_path = path + '\\' + globl.project_name
-            print("\n============  globl.project_path is: " + globl.project_path)
             return globl.project_path
 
         if path[-len_name:] == globl.project_name:
@@ -71,8 +70,6 @@ class GetConfig:
             globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3].split('/')[-1]
         else:
             globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3]
-        print("\n============  globl.test_name is: " + globl.test_name)
-        # globl.test_method_name = os.environ.get('PYTEST_CURRENT_TEST').split('::')[-1].split(' ')[0]
 
     def read_project_section(self):
         """
