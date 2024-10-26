@@ -23,3 +23,5 @@ class Test06ParametrizeSearch:
         log.message("Verify number of products.")
         self.results_page.count_products(counter)
 
+        log.message("Update to make Jenkins start build after this commit.")
+
