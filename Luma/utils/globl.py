@@ -27,5 +27,5 @@ driver_edge_path = '\\drivers\\edge\\msedgedriver.exe'
 
 
 # Parameters Jenkins
-run_jenkins = True
+run_jenkins = False
 # project_path for Jenkins will be C:\Users\oburenok\.jenkins\workspace\Selenium Python GitHub\Luma
