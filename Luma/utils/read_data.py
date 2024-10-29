@@ -20,7 +20,6 @@ def excel_to_dict(file_path, sheets_list):
         dict of data
     """
     test_data = {}
-    # sheets_list = ['SearchResults', 'HomePage']
 
     for sheet in sheets_list:
         data_xlsx = pd.read_excel(globl.test_path + '\\' + file_path, sheet)
