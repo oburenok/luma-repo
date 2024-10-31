@@ -40,9 +40,16 @@ def custom_logger(log_level=logging.INFO):
     file_handler = logging.FileHandler(report_path, mode='a')
     file_handler.setLevel(log_level)
 
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(log_level)
+
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s',
                                   datefmt='%m/%d/%Y %I:%M:%S %p')
+
     file_handler.setFormatter(formatter)
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 
     return logger
