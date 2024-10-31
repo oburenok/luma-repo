@@ -26,6 +26,19 @@ driver_firefox_path = '\\drivers\\firefox\\geckodriver.exe'
 driver_edge_path = '\\drivers\\edge\\msedgedriver.exe'
 
 
+# Logging
+logging_level = 'ERROR'
+# All possible loginig levels:
+                # CRITICAL = 50
+                # FATAL = CRITICAL
+                # ERROR = 40
+                # WARNING = 30
+                # WARN = WARNING
+                # INFO = 20
+                # DEBUG = 10
+                # NOTSET = 0
+
+
 # Parameters Jenkins
 run_jenkins = False
 # project_path for Jenkins will be C:\Users\oburenok\.jenkins\workspace\Selenium Python GitHub\Luma

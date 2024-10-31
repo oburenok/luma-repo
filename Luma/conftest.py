@@ -23,7 +23,7 @@ def driver(request):
     config.read_all_sections()
 
     # Initiate logging
-    log.custom_logger()
+    log.custom_logger(globl.logging_level)
 
     # Start browser for testing
     log.message("Preparing driver.")

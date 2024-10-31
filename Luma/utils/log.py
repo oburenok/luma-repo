@@ -110,6 +110,18 @@ def step(step_number, step_description):
     logger.info(step_number + " : " + step_description)
 
 
+def debug_message(msg):
+    """
+    This function adding debug massege in the log file with log level DEBUG
+    :param msg: message to be logged
+    :type msg: str
+    :return:
+            Nothing
+    """
+    logger = logging.getLogger(LOGGER_NAME)
+    logger.debug(str(msg))
+
+
 def warning(msg):
     """
     This function adding warning message in the log file with log level WARNING
