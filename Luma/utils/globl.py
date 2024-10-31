@@ -27,7 +27,7 @@ driver_edge_path = '\\drivers\\edge\\msedgedriver.exe'
 
 
 # Logging
-logging_level = 'ERROR'
+logging_level = 'INFO'
 # All possible loginig levels:
                 # CRITICAL = 50
                 # FATAL = CRITICAL
