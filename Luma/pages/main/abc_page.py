@@ -46,7 +46,7 @@ class ABCPage(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def wait_loading_page(self):
+    def load(self):
         pass
 
 

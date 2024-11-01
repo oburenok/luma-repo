@@ -14,7 +14,6 @@ class BasePage(ABCPage):
         self.driver = driver
         self.url = url
         self.actions = ActionChains(driver)
-
         self.category_menu = CategoryMenu(self.driver, self.url)
 
     def enter_text_in_search_field(self, text: str):
@@ -53,15 +52,12 @@ class BasePage(ABCPage):
 
         log.error("Search button is disabled and can't be clicked.")
 
-    def wait_loading_page(self, timeout=60):
+    def load(self):
         """
-        Wait while page is loading
-
-        :param timeout: wait time in seconds
-        :return:
+        Load page
 
         """
-        log.message("Method wait_loading_page() should be defined!!!!")
+        self.driver.get(self.page_url)
 
     def sign_in(self):
         log.message("Method sign_in() should be defined!!!!")
