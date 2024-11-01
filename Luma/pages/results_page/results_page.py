@@ -5,6 +5,8 @@ from utils import log, verify
 
 class ResultsPage(BasePage):
 
+    page_url = "https://magento.softwaretestingboard.com/catalogsearch/result/?q=Luma"
+
     def __init__(self, driver, url: str):
         super().__init__(driver, url)
 
