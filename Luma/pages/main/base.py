@@ -1,6 +1,7 @@
 import time
 
 from pages.main.abc_page import ABCPage
+from pages.main.mediator import Mediator
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
@@ -8,13 +9,20 @@ from selenium.webdriver.common.keys import Keys
 from utils import log
 
 
-class BasePage(ABCPage):
+class BasePage(ABCPage, Mediator):
 
-    def __init__(self, driver: webdriver.Firefox, url: str):
-        self.driver = driver
-        self.url = url
+    def __init__(self, driver, url):
+        Mediator.__init__(self, driver, url)
         self.actions = ActionChains(driver)
         self.category_menu = CategoryMenu(self.driver, self.url)
+
+    locator = {
+        "search": ["elem_type", (By.XPATH, "//input[@id='search']")],
+        "search_btn": ["elem_type", (By.XPATH, "//button[@class='action search']")],
+        "cart": ["elem_type", (By.XPATH, "//a[@class='action showcart']")],
+        "sign_in": ["elem_type", (By.XPATH, "//header//a[contains(text(),'Sign In')]")],
+        "create_account": ["elem_type", (By.XPATH, "//header//a[contains(text(),'Create an Account')]")]
+        }
 
     def enter_text_in_search_field(self, text: str):
         """
@@ -24,7 +32,7 @@ class BasePage(ABCPage):
         :return:
                 nothing
         """
-        elem_search_field = self.driver.find_element(By.XPATH, "//input[@id='search']")
+        elem_search_field = self.find_element(self.locator["search"][1])
 
         log.message("Clean up search field.")
         elem_search_field.send_keys(Keys.CONTROL + 'a')
@@ -37,25 +45,17 @@ class BasePage(ABCPage):
         """
         Click button search in search field
 
-        :return:
-                nothing
+        Example:
+            self.results_page.click_search()
         """
-        elem_search = self.driver.find_element(By.XPATH, "//button[@class='action search']")
-        for iteration in range(10):
-            if elem_search.is_enabled():
-                log.message("Click Search button.")
-                self.actions.move_to_element(elem_search).send_keys(Keys.ENTER).perform()
-                return
-            else:
-                log.message(f"Search button is disabled, waiting 0.5 seconds (iteration: {iteration})")
-                time.sleep(0.5)
-
-        log.error("Search button is disabled and can't be clicked.")
+        search_btn = self.wait_for_element("search_btn")
+        search_btn.click()
 
     def load(self):
         """
-        Load page
-
+        Load page.
+        Example:
+            self.home_page.load()
         """
         self.driver.get(self.page_url)
 
