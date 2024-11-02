@@ -10,6 +10,10 @@ class ResultsPage(BasePage):
     def __init__(self, driver, url: str):
         super().__init__(driver, url)
 
+    p_locator = {
+        "products_list": ["elem_type", (By.XPATH, "//ol[@class='products list items product-items']/li[@class='item product product-item']")]
+    }
+
     def verify_product(self):
         log.message("Method verify_product() should be defined!!!!")
 
@@ -27,8 +31,7 @@ class ResultsPage(BasePage):
             s = "hello world"
             verify.equal(s.split(), ['hello', 'world'])
         """
-        products_count = len(self.driver.find_elements(
-            By.XPATH, "//ol[@class='products list items product-items']/li[@class='item product product-item']"))
+        products_count = len(self.find_elements(self.p_locator["products_list"][1]))
 
         if expected_count is not None:
             verify.is_equal(products_count, expected_count, f"Result page should contains {expected_count} product(s).")
