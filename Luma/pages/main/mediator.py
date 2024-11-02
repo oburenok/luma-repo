@@ -17,8 +17,25 @@ class Mediator(object):
         :type loc: tuple
 
         :return: webelement
+
+        Example:
+                self.find_element(self.locator["search_btn"][1])
         """
         return self.driver.find_element(loc[0], loc[1])
+
+    def find_elements(self, loc):
+        """
+        Find elements on the page
+        :param loc: locator for elements, should look like (By.XPATH,
+                    "//ol[@class='products list items product-items']/li[@class='item product product-item']")
+        :type loc: tuple
+
+        :return: webelement
+
+        Example:
+                self.find_elements(self.locator["products_list"][1])
+        """
+        return self.driver.find_elements(loc[0], loc[1])
 
     def wait_for_element(self, loc_name, timeout=60):
         """
