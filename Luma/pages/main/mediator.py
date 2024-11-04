@@ -37,16 +37,35 @@ class Mediator(object):
         """
         return self.driver.find_elements(loc[0], loc[1])
 
-    def wait_for_element(self, loc_name, timeout=60):
+    def get_element_text(self, loc):
+        """
+        Find element text
+        :param loc: locator for element, should look like (By.XPATH, "//input[@id='price']")
+        :type loc: tuple
+
+        :return: str
+
+        Example:
+                self.find_element(self.locator["search_btn"][1])
+        """
+        return self.find_element(loc).text
+
+    def wait_for_element(self, loc, timeout=60):
         """
         Wait for element
+
+        :param timeout: time to wait in second, before return error
+        :param timeout: int
+        :param loc: locator for element, should look like (By.XPATH, "//input[@id='price']")
+        :type loc: tuple
+
         :return: webelement
 
         Example:
-            self.page.wait_for_element("search_btn")
+            self.wait_for_element(self.locator["search_btn"][1])
         """
         element = WebDriverWait(self.driver, timeout, poll_frequency=1).until(
-            EC.visibility_of_element_located(self.locator[loc_name][1]))
+            EC.visibility_of_element_located(loc))
 
         return element
 
