@@ -48,7 +48,7 @@ class BasePage(ABCPage, Mediator):
         Example:
             self.results_page.click_search()
         """
-        search_btn = self.wait_for_element("search_btn")
+        search_btn = self.wait_for_element(self.locator["search_btn"][1])
         search_btn.click()
 
     def load(self):
