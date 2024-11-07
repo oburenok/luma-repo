@@ -7,11 +7,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.firefox.service import Service as FFService
-
+from utils.singleton import SingletonMeta
 from utils import log, globl
 
 
-class RunBrowser:
+class RunBrowser(metaclass=SingletonMeta):
     """
     This class starting browser according to configuration defined
     in config.standart_env_config.ini file
