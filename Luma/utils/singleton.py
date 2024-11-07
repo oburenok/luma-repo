@@ -12,8 +12,7 @@ class SingletonMeta(type):
 
     def __call__(cls, *args, **kwargs):
         """
-        Possible changes to the value of the `__init__` argument do not affect
-        the returned instance.
+        Returns instance of the class if it is already existing, otherwise create the one
         """
         if cls not in cls._instances:
             instance = super().__call__(*args, **kwargs)
