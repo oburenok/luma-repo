@@ -11,7 +11,7 @@ from utils.singleton import SingletonMeta
 from utils import log, globl
 
 
-class RunBrowser(metaclass=SingletonMeta):
+class RunBrowser():
     """
     This class starting browser according to configuration defined
     in config.standart_env_config.ini file
