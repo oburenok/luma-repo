@@ -69,3 +69,15 @@ class Mediator(object):
 
         return element
 
+    def open_page(self, url):
+        """
+        Navigate to specified page by link
+
+        :param url: url of the page
+        :type url: str
+
+        Example:
+
+        """
+        self.driver.get(url)
+
