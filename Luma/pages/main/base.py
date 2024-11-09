@@ -17,6 +17,7 @@ class BasePage(ABCPage, Mediator):
         self.category_menu = CategoryMenu(self.driver, self.url)
         self.cart = Cart(self.driver, self.url)
 
+    page_url = "https://magento.softwaretestingboard.com"
     locator = {
         "search": ["elem_type", (By.XPATH, "//input[@id='search']")],
         "search_btn": ["elem_type", (By.XPATH, "//button[@class='action search']")],
@@ -60,6 +61,16 @@ class BasePage(ABCPage, Mediator):
         """
         self.driver.get(self.page_url)
 
+    def navigate_to_page(self, link):
+        """
+        Navigate to specified page by link
+
+        :param link: link to the page
+        :type link: str
+
+        """
+        self.open_page(url=link)
+
     def sign_in(self):
         log.message("Method sign_in() should be defined!!!!")
 
@@ -80,9 +91,6 @@ class BasePage(ABCPage, Mediator):
 
     def click_proceed_to_checkout(self):
         log.message("Method click_proceed_to_checkout() should be defined!!!!")
-
-    def click_view_and_edit_cart(self):
-        log.message("Method click_view_and_edit_cart() should be defined!!!!")
 
     def logout(self):
         log.message("Method logout() should be defined!!!!")
