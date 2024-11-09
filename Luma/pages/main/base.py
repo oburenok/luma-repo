@@ -72,6 +72,7 @@ class BasePage(ABCPage, Mediator):
         self.open_page(url=link)
 
     def sign_in(self):
+        """To be defined"""
         log.message("Method sign_in() should be defined!!!!")
 
     def create_account(self):
@@ -184,8 +185,9 @@ class Cart(Mediator):
         Verify product quantity next to the cart icon
 
         :param expected_qty: product quantity
-        :type expected_qty: str
+        :type expected_qty: int
         """
         aqtual_qty = self.get_element_text(self.cart_locator["title_qty"][1])
 
-        verify.is_equal(aqtual_qty, expected_qty, f"product quantity next to the cart icon should be '{expected_qty}'.")
+        verify.is_equal(str(aqtual_qty), str(expected_qty),
+                        f"Product quantity next to the cart icon should be '{expected_qty}'.")
