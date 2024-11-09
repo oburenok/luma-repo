@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from utils import log
+from utils import log, verify
 
 
 class BasePage(ABCPage, Mediator):
@@ -15,6 +15,7 @@ class BasePage(ABCPage, Mediator):
         Mediator.__init__(self, driver, url)
         self.actions = ActionChains(driver)
         self.category_menu = CategoryMenu(self.driver, self.url)
+        self.cart = Cart(self.driver, self.url)
 
     locator = {
         "search": ["elem_type", (By.XPATH, "//input[@id='search']")],
@@ -159,3 +160,24 @@ class CategoryMenu:
 
             if click is True and item == category_path.split(" ")[-1]:
                 menu_item.click()
+
+
+class Cart(Mediator):
+
+    def __init__(self, driver: webdriver.Firefox, url: str):
+        Mediator.__init__(self, driver, url)
+
+    cart_locator = {
+        "title_qty": ["elem_type", (By.XPATH, "//span[@class='counter-number']")]
+    }
+
+    def verify_title_quantity(self, expected_qty):
+        """
+        Verify product quantity next to the cart icon
+
+        :param expected_qty: product quantity
+        :type expected_qty: str
+        """
+        aqtual_qty = self.get_element_text(self.cart_locator["title_qty"][1])
+
+        verify.is_equal(aqtual_qty, expected_qty, f"product quantity next to the cart icon should be '{expected_qty}'.")
