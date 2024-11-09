@@ -30,19 +30,11 @@ class ABCPage(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def verify_cart_counter(self):
-        pass
-
-    @abc.abstractmethod
     def verify_cart_subtotal(self):
         pass
 
     @abc.abstractmethod
     def click_proceed_to_checkout(self):
-        pass
-
-    @abc.abstractmethod
-    def click_view_and_edit_cart(self):
         pass
 
     @abc.abstractmethod
