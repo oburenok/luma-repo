@@ -1,14 +1,21 @@
+"""
+This is the mediator, it contains all methods which call Selenium WebDriver.
+"""
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from utils import log
 
 
-class Mediator(object):
+class Mediator:
+    """This class is the mediator between Page Objects and Selenium WebDriver,
+    all operation with driver should be done here."""
 
     def __init__(self, driver: webdriver.Firefox, url: str):
         self.driver = driver
         self.url = url
+        self.actions = ActionChains(driver)
 
     def find_element(self, loc):
         """
@@ -77,7 +84,25 @@ class Mediator(object):
         :type url: str
 
         Example:
-
+                open_page(url="https://magento.softwaretestingboard.com/antonia-racer-tank.html")
         """
         self.driver.get(url)
 
+    def enter_value_in_field(self, loc, value):
+        """
+        Enter data in field
+
+        :param loc: locator for element, should look like (By.XPATH, "//input[@id='price']")
+        :type loc: tuple
+        :param value: text or numeric value
+        :type value: str, int
+
+        Example:
+
+        """
+        elem_field = self.wait_for_element(loc)
+
+        elem_field.send_keys(Keys.CONTROL + 'a')
+        elem_field.send_keys(Keys.DELETE)
+
+        self.actions.move_to_element(elem_field).click().send_keys(value).perform()
