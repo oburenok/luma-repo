@@ -1,11 +1,14 @@
 """
 This is the mediator, it contains all methods which call Selenium WebDriver.
 """
+import traceback
+
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from utils import log
 
 
 class Mediator:
@@ -71,8 +74,13 @@ class Mediator:
         Example:
             self.wait_for_element(self.locator["search_btn"][1])
         """
-        element = WebDriverWait(self.driver, timeout, poll_frequency=1).until(
-            EC.visibility_of_element_located(loc))
+        try:
+            element = WebDriverWait(self.driver, timeout, poll_frequency=1).until(
+                    EC.visibility_of_element_located(loc))
+
+        except:
+            exception_info = traceback.format_exc()
+            log.exception(f"An exception occurred in the driver fixture:\n {exception_info}")
 
         return element
 
