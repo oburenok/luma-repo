@@ -1,15 +1,21 @@
+"""
+BasePage for all pages.
+"""
+
 import time
 
-from pages.main.abc_page import ABCPage
-from pages.main.mediator import Mediator
-from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+from pages.main.abc_page import ABCPage
+from pages.main.mediator import Mediator
 from utils import log, verify
 
 
 class BasePage(ABCPage, Mediator):
+    """This is the main parent class for all pages.
+    It contains main functionality related to all pages."""
 
     def __init__(self, driver, url):
         Mediator.__init__(self, driver, url)
@@ -76,28 +82,36 @@ class BasePage(ABCPage, Mediator):
         log.message("Method sign_in() should be defined!!!!")
 
     def create_account(self):
+        """To be defined"""
         log.message("Method create_account() should be defined!!!!")
 
     def search_products(self):
+        """To be defined"""
         log.message("Method search_products() should be defined!!!!")
 
     def open_cart(self):
+        """To be defined"""
         log.message("Method open_cart() should be defined!!!!")
 
     def verify_cart_counter(self):
+        """To be defined"""
         log.message("Method verify_cart_counter() should be defined!!!!")
 
     def verify_cart_subtotal(self):
+        """To be defined"""
         log.message("Method verify_cart_subtotal() should be defined!!!!")
 
     def click_proceed_to_checkout(self):
+        """To be defined"""
         log.message("Method click_proceed_to_checkout() should be defined!!!!")
 
     def logout(self):
+        """To be defined"""
         log.message("Method logout() should be defined!!!!")
 
 
 class CategoryMenu:
+    """This class used to navigate through the Category Menu."""
 
     def __init__(self, driver: webdriver.Firefox, url: str):
         self.driver = driver
@@ -165,13 +179,14 @@ class CategoryMenu:
                 else:
                     time.sleep(0.5)
             else:
-                log.warning(f"Menu item is not displayed or missing.")
+                log.warning("Menu item is not displayed or missing.")
 
             if click is True and item == category_path.split(" ")[-1]:
                 menu_item.click()
 
 
 class Cart(Mediator):
+    """This class is used to work with mini cart on all pages of Luma web-site."""
 
     def __init__(self, driver: webdriver.Firefox, url: str):
         Mediator.__init__(self, driver, url)
