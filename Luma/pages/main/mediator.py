@@ -114,3 +114,11 @@ class Mediator:
         elem_field.send_keys(Keys.DELETE)
 
         self.actions.move_to_element(elem_field).click().send_keys(value).perform()
+
+    def click_element(self, element):
+        """
+        Click to element
+        :param element: web-element, found by webdriver
+        :type element: web-element
+        """
+        element.click()
