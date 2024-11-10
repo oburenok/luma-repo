@@ -11,31 +11,26 @@ class ABCProduct(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def verify_price(self):
+    def verify_price(self, price):
         pass
 
     @abc.abstractmethod
-    def verify_quantity(self):
+    def get_qty(self):
         pass
 
     @abc.abstractmethod
-    def verify_name(self):
+    def verify_qty(self, quantity):
+        pass
+
+    @abc.abstractmethod
+    def get_name(self):
+        pass
+
+    @abc.abstractmethod
+    def verify_name(self, name):
         pass
 
     @abc.abstractmethod
     def add_to_cart(self):
         pass
-
-    @abc.abstractmethod
-    def remove_from_cart(self):
-        pass
-
-    @abc.abstractmethod
-    def update_product(self):
-        pass
-
-    @abc.abstractmethod
-    def is_composite(self):
-        pass
-
 
