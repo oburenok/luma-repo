@@ -122,3 +122,24 @@ class Mediator:
         :type element: web-element
         """
         element.click()
+
+    def move_to_element(self, element):
+        """
+        Find element and move to it
+        :param element: web_element, found by webdriver
+        :type element: obj element
+
+        Example:
+                elem = self.driver.find_elements(By.XPATH, "//input[@id='price']")
+                move_to_element(element)
+        """
+        self.actions.move_to_element(element).perform()
+
+    def scroll_down(self, element):
+        """
+        Scroll down
+
+        :param element: web_element, found by webdriver
+        :type element: obj element
+        """
+        element.send_keys(Keys.PAGE_DOWN)
