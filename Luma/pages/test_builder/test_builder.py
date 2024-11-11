@@ -130,3 +130,41 @@ class TestBuilder:
 
         return self
 
+    def c_navigate_to_cart(self):
+        """
+        Navigate to Cart page
+        :return: self
+        """
+        self.cartPage.load()
+
+        return self
+
+    def c_verify_product_info(self, name, size, color, price, qty, subtotal):
+        """
+        Verify product price and subtotal on art page
+        :param name: product name, str
+        :param size: product size, str
+        :param color: product color, str
+        :param price: product price, str
+        :param qty: product qty, str
+        :param subtotal: product subtotal, str
+        :return: self
+        """
+        self.cartPage.product.verify_price(name, price)
+        self.cartPage.product.verify_size(name, size)
+        self.cartPage.product.verify_color(name, color)
+        self.cartPage.product.verify_qty(name, qty)
+        self.cartPage.product.verify_subtotal(name, subtotal)
+
+        return self
+
+    def c_proceed_to_checkout(self):
+        """
+        Click Proceed to Checkout
+        :return: self
+        """
+        self.cartPage.click_proceed_to_checkout()
+
+        return self
+
+
