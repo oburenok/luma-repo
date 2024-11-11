@@ -26,6 +26,8 @@ class LoginPage(BasePage):
         :param username: username
         :param password: password
         """
+        self.scroll_down(self.login_button.find())
+
         self.login_container.enter(username, password)
 
     def login_and_verify_error(self, username, password, message):
