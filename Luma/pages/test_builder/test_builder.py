@@ -7,6 +7,20 @@ from pages.cart_page.cart_page import CartPage
 
 
 class TestBuilder:
+    """
+    Test Builder class can be used to create complex tests with less effort.
+    There are a lot of different methods from different pages, some of them may have similar names.
+    To avoid misunderstanding and improve readability, each method name contains the first letter of the page name.
+
+    'l_' - login page
+    'r_' - search results page
+    'p_' - product page
+    'c_' - cart page
+
+    For example:
+            l_login() - login method  which belongs to 'l_' login page
+            r_search_product() - method search_product() which belongs to 'r_' search results page
+    """
 
     def __init__(self, driver, url):
         self.driver = driver
