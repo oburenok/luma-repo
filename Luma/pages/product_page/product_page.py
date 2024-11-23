@@ -150,8 +150,8 @@ class Product(ABCProduct, Mediator):
             self.prod_locator["size"][1][0],
             self.prod_locator["size"][1][1].replace('SIZE', size))
 
-        color_elem = self.wait_for_element(size_locator)
-        color_elem.click()
+        size_elem = self.wait_for_element(size_locator)
+        size_elem.click()
 
         return self
 
