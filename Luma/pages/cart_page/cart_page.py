@@ -1,3 +1,5 @@
+import copy
+
 from pages.main.base import BasePage
 from pages.main.mediator import Mediator
 from pages.main.abc_product import ABCProduct
@@ -270,3 +272,16 @@ class CartProduct(ABCProduct, Mediator):
         # return self
         pass
 
+
+class ProductParam:
+
+    def __init__(self, name, size, color, price, qty, subtotal):
+        self.name = name
+        self.size = size
+        self.color = color
+        self.price = price
+        self.qty = qty
+        self.subtotal = subtotal
+
+    def clone(self):
+        return copy.deepcopy(self)
