@@ -7,7 +7,8 @@ from pages.cart_page.cart_page import CartPage
 from utils import log, decorators
 
 
-STRING_VARIABLE = "Test string for global variable."
+PI_NUMBER = 3.1415926
+string_variable = "Test string for global variable."
 
 
 @pytest.mark.usefixtures("driver")
@@ -17,14 +18,15 @@ class Test14Decorator:
     @decorators.stopwatch
     def test_01_decorator(self):
         """Testing decorator 'stopwatch'."""
-        global STRING_VARIABLE
+        global PI_NUMBER, string_variable
 
         self.cartPage = CartPage(self.driver, self.url)
 
         log.message("Navigate to Cart page.")
         self.cartPage.load()
 
-        log.message(STRING_VARIABLE)
+        log.message(string_variable)
 
-        STRING_VARIABLE = "String is updated."
-        log.message(STRING_VARIABLE)
+        string_variable = "String is updated."
+        log.message(string_variable)
+        log.message(PI_NUMBER)
