@@ -47,7 +47,7 @@ class Test11CartPageMainOperation:
 
         log.step("4.001", "Click to button Proceed to Checkout")
         # Click to button temporary disabled because of interceptioin
-        # self.cartPage.click_proceed_to_checkout()
+        self.cartPage.click_proceed_to_checkout()
 
     @pytest.mark.order(10)
     @pytest.mark.parametrize(
