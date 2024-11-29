@@ -1,4 +1,3 @@
-import time
 import pytest
 
 from pages.test_builder.test_builder import TestBuilder

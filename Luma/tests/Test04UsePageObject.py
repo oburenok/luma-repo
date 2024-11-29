@@ -2,7 +2,6 @@
 This is a first test for commercial website Luma.
 """
 
-import time
 import pytest
 
 from pages.home_page.home_page import HomePage
@@ -22,8 +21,6 @@ class Test04UsePageObject:
         self.home_page.enter_text_in_search_field("Tank")
         self.home_page.click_search()
 
-        time.sleep(2)
-
     @pytest.mark.skip(reason="Test contains to much warnings and critical messages.")
     def test_02_navigation_to_google(self):
         self.driver.get("https://www.google.com.ua")
@@ -39,7 +36,6 @@ class Test04UsePageObject:
         log.message("to simulate testing process.")
 
         log.critical("Log critical to increase critical counter.")
-        time.sleep(1.5)
 
     @pytest.mark.xfail
     def test_03_failed(self):

@@ -2,7 +2,6 @@
 This is a test for commercial website Luma.
 """
 
-import time
 import pytest
 
 from pages.home_page.home_page import HomePage
@@ -25,13 +24,10 @@ class Test05UsePageObject:
 
         log.message("Navigate to category menus.")
         self.home_page.category_menu.navigate_to_category("woman wtops wjackets")
-        time.sleep(1)
 
         self.home_page.category_menu.navigate_to_category("man mtops mtees", click=False)
-        time.sleep(1)
 
         self.home_page.category_menu.navigate_to_category("gear fitnessequipment")
-        time.sleep(1)
 
     @pytest.mark.smoke
     def test_02_navigation_to_google(self):
@@ -40,7 +36,6 @@ class Test05UsePageObject:
         log.message("Search product.")
         self.results_page.enter_text_in_search_field("Watch")
         self.results_page.click_search()
-        time.sleep(2)
 
         log.step("1.001", "Verify product.")
         self.results_page.verify_product()

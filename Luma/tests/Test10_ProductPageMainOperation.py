@@ -1,4 +1,3 @@
-import time
 import pytest
 
 from pages.product_page.product_page import ProductPage
@@ -39,4 +38,3 @@ class Test10ProductPageMainOperation:
         log.step("1.006", "Verify cart title quantity.")
         self.productPage.cart.verify_title_quantity(test_data["title_qty"])
 
-        time.sleep(2)

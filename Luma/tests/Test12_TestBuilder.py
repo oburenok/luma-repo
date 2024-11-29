@@ -1,4 +1,3 @@
-import time
 import pytest
 
 from pages.test_builder.test_builder import TestBuilder
@@ -41,6 +40,4 @@ class Test12TestBuilder:
             .c_verify_product_info("Sol Active Short", "34", "blue", "32.00", "18", "576.00")\
             .c_verify_product_info("Cassius Sparring Tank", "L", "blue", "18.00", "25", "450.00")\
             .c_proceed_to_checkout()
-
-        time.sleep(3)
 

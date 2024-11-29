@@ -2,7 +2,7 @@
 This is a Login test for commercial website Luma.
 """
 
-import pytest, time
+import pytest
 
 from pages.results_page.results_page import ResultsPage
 from pages.login_page.login_page import LoginPage
@@ -21,7 +21,6 @@ class Test08LoginComposite:
         self.loginPage.load()
         self.loginPage.login_and_verify_error("invalid@gmail.com", "qwerty12345",
                                               "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.")
-        time.sleep(1.5)
 
         log.message("Logging to the site Luma.")
         self.loginPage.load()

@@ -2,7 +2,6 @@
 This is a first test for commercial website Luma.
 """
 
-import time
 import pytest
 
 from pages.results_page.results_page import ResultsPage
