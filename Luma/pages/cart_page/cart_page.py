@@ -14,14 +14,14 @@ class CartPage(BasePage):
         super().__init__(driver, url)
         self.product = CartProduct(self.driver, self.url)
 
-    locator = {"proceed_to_checkout": ["elem_type", (By.XPATH, "//button[@data-role='proceed-to-checkout']")]}
+    cart_locator = {"proceed_to_checkout": ["elem_type", (By.XPATH, "//button[@data-role='proceed-to-checkout']")]}
 
     def click_proceed_to_checkout(self):
         """
         Click Proceed to Checkout button
 
         """
-        elem_button = self.find_element(self.locator["proceed_to_checkout"][1])
+        elem_button = self.find_element(self.cart_locator["proceed_to_checkout"][1])
         self.click_element(elem_button)
 
 

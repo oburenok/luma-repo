@@ -61,23 +61,32 @@ class BasePage(ABCPage, Mediator):
         search_btn = self.wait_for_element(self.locator["search_btn"][1])
         search_btn.click()
 
-    def load(self):
+    def load(self, close_footer_ads=True):
         """
         Load page.
+        :param close_footer_ads: define if footer ads should be closed
+        :type close_footer_ads: bln
+
         Example:
             self.home_page.load()
         """
         self.driver.get(self.page_url)
+        if close_footer_ads:
+            self.close_footer_ads()
 
-    def navigate_to_page(self, link):
+    def navigate_to_page(self, link, close_footer_ads=True):
         """
         Navigate to specified page by link
 
         :param link: link to the page
         :type link: str
+        :param close_footer_ads: define if footer ads should be closed
+        :type close_footer_ads: bln
 
         """
         self.open_page(url=link)
+        if close_footer_ads:
+            self.close_footer_ads()
 
     def close_footer_ads(self):
         """
