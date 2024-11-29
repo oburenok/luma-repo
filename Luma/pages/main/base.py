@@ -29,7 +29,9 @@ class BasePage(ABCPage, Mediator):
         "search_btn": ["elem_type", (By.XPATH, "//button[@class='action search']")],
         "cart": ["elem_type", (By.XPATH, "//a[@class='action showcart']")],
         "sign_in": ["elem_type", (By.XPATH, "//header//a[contains(text(),'Sign In')]")],
-        "create_account": ["elem_type", (By.XPATH, "//header//a[contains(text(),'Create an Account')]")]
+        "create_account": ["elem_type", (By.XPATH, "//header//a[contains(text(),'Create an Account')]")],
+        "ads": ["elem_type", (By.XPATH, "//div[@class='grippy-host']//parent::ins")],
+        "ads_panel": ["elem_type", (By.XPATH, "//div[@class='grippy-host']")]
         }
 
     def enter_text_in_search_field(self, text: str):
@@ -76,6 +78,26 @@ class BasePage(ABCPage, Mediator):
 
         """
         self.open_page(url=link)
+
+    def close_footer_ads(self):
+        """
+        Closing Footer Ads if it's shown.
+
+        :return:
+        """
+        try:
+            ads = self.wait_for_element(self.locator["ads"][1], timeout=10)
+            time.sleep(1.2)
+
+            if ads.get_attribute("data-anchor-status") == "displayed":
+
+                log.message("Footer Ads were displayed => Closing.")
+                ads_panel = self.wait_for_element(self.locator["ads_panel"][1])
+                self.actions.move_to_element(ads_panel).send_keys(Keys.SHIFT + Keys.TAB).click().perform()
+                time.sleep(1)
+
+        except UnboundLocalError:
+            log.message("Ads wasn't displayed. Normal behaviour.")
 
     def sign_in(self):
         """To be defined"""
