@@ -105,7 +105,7 @@ class BasePage(ABCPage, Mediator):
                 self.actions.move_to_element(ads_panel).send_keys(Keys.SHIFT + Keys.TAB).click().perform()
 
                 # Waiting for the Ads banner to drop
-                time.sleep(1.25)
+                time.sleep(1.3)
 
         except UnboundLocalError:
             log.message("Ads wasn't displayed. Normal behaviour.")
