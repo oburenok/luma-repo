@@ -103,7 +103,9 @@ class BasePage(ABCPage, Mediator):
                 log.message("Footer Ads were displayed => Closing.")
                 ads_panel = self.wait_for_element(self.locator["ads_panel"][1])
                 self.actions.move_to_element(ads_panel).send_keys(Keys.SHIFT + Keys.TAB).click().perform()
-                time.sleep(1)
+
+                # Waiting for the Ads banner to drop
+                time.sleep(1.25)
 
         except UnboundLocalError:
             log.message("Ads wasn't displayed. Normal behaviour.")
