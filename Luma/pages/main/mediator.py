@@ -80,7 +80,7 @@ class Mediator:
 
         except:
             exception_info = traceback.format_exc()
-            log.exception(f"An exception occurred in the driver fixture:\n {exception_info}")
+            log.exception(f"An exception occurred while waiting for element!!! \n {exception_info}")
 
         return element
 
