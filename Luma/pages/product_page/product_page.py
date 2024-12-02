@@ -20,12 +20,12 @@ class Product(ABCProduct, Mediator):
         Mediator.__init__(self, driver, url)
 
     prod_locator = {
-        "name": ["elem_type", (By.XPATH, "//h1[@class='page-title']/span[@class='base']")],
+        "name": ["elem_type", (By.CSS_SELECTOR, ".page-title")],
         "price": ["elem_type", (By.XPATH, "//div[@class='product-info-price']//span[@class='price']")],
-        "qty": ["elem_type", (By.XPATH, "//input[@id='qty']")],
+        "qty": ["elem_type", (By.ID, "qty")],
         "color": ["elem_type", (By.XPATH, "//div[@class='product-info-main']//div[@option-label='COLOR']")],
         "size": ["elem_type", (By.XPATH, "//div[@class='product-info-main']//div[@option-label='SIZE']")],
-        "add_to_cart": ["elem_type", (By.XPATH, "//button[@title='Add to Cart']")],
+        "add_to_cart": ["elem_type", (By.ID, "product-addtocart-button")],
     }
 
     def get_price(self):
