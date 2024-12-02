@@ -24,15 +24,16 @@ class BasePage(ABCPage, Mediator):
         self.cart = Cart(self.driver, self.url)
 
     page_url = "https://magento.softwaretestingboard.com"
+
     locator = {
-        "search": ["elem_type", (By.XPATH, "//input[@id='search']")],
-        "search_btn": ["elem_type", (By.XPATH, "//button[@class='action search']")],
-        "cart": ["elem_type", (By.XPATH, "//a[@class='action showcart']")],
+        "search": ["elem_type", (By.ID, "search")],
+        "search_btn": ["elem_type", (By.CSS_SELECTOR, ".action.search")],
+        "cart": ["elem_type", (By.CSS_SELECTOR, ".action.showcart")],
         "sign_in": ["elem_type", (By.XPATH, "//header//a[contains(text(),'Sign In')]")],
         "create_account": ["elem_type", (By.XPATH, "//header//a[contains(text(),'Create an Account')]")],
         "ads": ["elem_type", (By.XPATH, "//div[@class='grippy-host']//parent::ins")],
-        "ads_panel": ["elem_type", (By.XPATH, "//div[@class='grippy-host']")]
-        }
+        "ads_panel": ["elem_type", (By.CSS_SELECTOR, ".grippy-host")]
+    }
 
     def enter_text_in_search_field(self, text: str):
         """
@@ -225,7 +226,7 @@ class Cart(Mediator):
         Mediator.__init__(self, driver, url)
 
     cart_locator = {
-        "title_qty": ["elem_type", (By.XPATH, "//span[@class='counter-number']")]
+        "title_qty": ["elem_type", (By.CSS_SELECTOR, ".counter-number")]
     }
 
     def verify_title_quantity(self, expected_qty):
