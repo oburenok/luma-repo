@@ -26,6 +26,7 @@ class Product(ABCProduct, Mediator):
         "color": ["elem_type", (By.XPATH, "//div[@class='product-info-main']//div[@option-label='COLOR']")],
         "size": ["elem_type", (By.XPATH, "//div[@class='product-info-main']//div[@option-label='SIZE']")],
         "add_to_cart": ["elem_type", (By.ID, "product-addtocart-button")],
+        "spinning_cyrcle": ["elem_type", (By.CSS_SELECTOR, "[class*='_block-content-loading']")],
     }
 
     def get_price(self):
@@ -110,7 +111,7 @@ class Product(ABCProduct, Mediator):
         button_add.click()
 
         # Waiting while product is adding to the cart
-        self.wait_for_element(self.prod_locator["add_to_cart"][1])
+        self.wait_for_element_disappear(self.prod_locator["spinning_cyrcle"][1])
 
     def select_color(self, color):
         """

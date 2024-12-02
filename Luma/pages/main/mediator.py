@@ -84,6 +84,32 @@ class Mediator:
 
         return element
 
+    def wait_for_element_disappear(self, loc, timeout=60):
+        """
+        Wait while element disappear
+
+        :param timeout: time to wait in second, before return error
+        :param timeout: int
+        :param loc: locator for element, should look like (By.CSS_SELECTOR, "[class*='_block-content-loading']")
+        :type loc: tuple
+
+        :return: True - if element disappeared
+                 False - if element didn't disappear
+
+        Example:
+
+        """
+        try:
+            WebDriverWait(self.driver, timeout, poll_frequency=1).until(
+                EC.invisibility_of_element(loc))
+
+        except:
+            exception_info = traceback.format_exc()
+            log.exception(f"An exception occurred while waiting for disappearing element!!! \n {exception_info}")
+            return False
+
+        return True
+
     def open_page(self, url):
         """
         Navigate to specified page by link
