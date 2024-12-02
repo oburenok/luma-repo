@@ -239,4 +239,4 @@ class Cart(Mediator):
         aqtual_qty = self.get_element_text(self.cart_locator["title_qty"][1])
 
         verify.is_equal(str(aqtual_qty), str(expected_qty),
-                        f"Product quantity next to the cart icon should be '{expected_qty}'.")
+                        f"Product quantity in the cart should be '{expected_qty}'.")
