@@ -23,9 +23,9 @@ def is_equal(a, b, msg=None,):
         log.message(str(msg))
 
         if a == b:
-            log.message(f"Value {a} is equal to value {b}.")
+            log.message(f"CHECKPOINT: Value {a} is equal to value {b}.")
         else:
-            log.warning(f"Value {a} is NOT equal to the value {b}.")
+            log.warning(f"CHECKPOINT: Value {a} is NOT equal to the value {b}.")
 
     except Exception as exc:
         log.exception(str(exc))
