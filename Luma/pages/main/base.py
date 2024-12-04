@@ -71,7 +71,7 @@ class BasePage(ABCPage, Mediator):
         Example:
             self.home_page.load()
         """
-        self.driver.get(self.page_url)
+        self.open_page(self.page_url)
         if close_footer_ads:
             self.close_footer_ads()
 
