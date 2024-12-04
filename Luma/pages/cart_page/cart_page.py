@@ -30,7 +30,7 @@ class CartProduct(ABCProduct, Mediator):
     def __init__(self, driver, url: str):
         Mediator.__init__(self, driver, url)
 
-    prod_locator = {
+    __prod_locator = {
         "products_list": ["elem_type", (By.XPATH, "//tbody[@class='cart item']")],
         "name": ["elem_type", (By.XPATH, "//tbody[@class='cart item']//a[contains(text(),'PRODUCT_NAME')]")],
         "size": ["elem_type", (By.XPATH,
@@ -59,7 +59,7 @@ class CartProduct(ABCProduct, Mediator):
 
         :return: str, price
         """
-        # elem_price = self.get_element_text(self.prod_locator["price"][1])
+        # elem_price = self.get_element_text(self.__prod_locator["price"][1])
         #
         # # removing symbol $
         # elem_price = elem_price[1:]
@@ -77,8 +77,8 @@ class CartProduct(ABCProduct, Mediator):
         :type expected_price: str
         """
         locator = (
-            self.prod_locator["price"][1][0],
-            self.prod_locator["price"][1][1].replace('PRODUCT_NAME', prod_name))
+            self.__prod_locator["price"][1][0],
+            self.__prod_locator["price"][1][1].replace('PRODUCT_NAME', prod_name))
         actual_price = self.get_element_text(locator)
 
         # removing symbol $
@@ -96,8 +96,8 @@ class CartProduct(ABCProduct, Mediator):
         :type expected_subtotal: str
         """
         locator = (
-            self.prod_locator["subtotal"][1][0],
-            self.prod_locator["subtotal"][1][1].replace('PRODUCT_NAME', prod_name))
+            self.__prod_locator["subtotal"][1][0],
+            self.__prod_locator["subtotal"][1][1].replace('PRODUCT_NAME', prod_name))
         actual_subtotal = self.get_element_text(locator)
 
         # removing symbol $
@@ -111,7 +111,7 @@ class CartProduct(ABCProduct, Mediator):
 
         :return: int, quantity
         """
-        # elem_qty = self.find_element(self.prod_locator["qty"][1])
+        # elem_qty = self.find_element(self.__prod_locator["qty"][1])
         #
         # elem_qty = int(elem_qty.get_attribute("value"))
         #
@@ -129,8 +129,8 @@ class CartProduct(ABCProduct, Mediator):
 
         """
         locator = (
-            self.prod_locator["qty"][1][0],
-            self.prod_locator["qty"][1][1].replace('PRODUCT_NAME', prod_name))
+            self.__prod_locator["qty"][1][0],
+            self.__prod_locator["qty"][1][1].replace('PRODUCT_NAME', prod_name))
 
         elem_qty = self.find_element(locator)
         actual_qty = elem_qty.get_attribute("value")
@@ -148,8 +148,8 @@ class CartProduct(ABCProduct, Mediator):
         :return:
         """
         locator = (
-            self.prod_locator["qty"][1][0],
-            self.prod_locator["qty"][1][1].replace('PRODUCT_NAME', prod_name))
+            self.__prod_locator["qty"][1][0],
+            self.__prod_locator["qty"][1][1].replace('PRODUCT_NAME', prod_name))
 
         self.enter_value_in_field(locator, qty)
 
@@ -159,7 +159,7 @@ class CartProduct(ABCProduct, Mediator):
 
         :return: str
         """
-        # elem_name = self.get_element_text(self.prod_locator["name"][1])
+        # elem_name = self.get_element_text(self.__prod_locator["name"][1])
         #
         # return elem_name
         pass
@@ -172,8 +172,8 @@ class CartProduct(ABCProduct, Mediator):
         :type prod_name: str
         """
         locator = (
-            self.prod_locator["name"][1][0],
-            self.prod_locator["name"][1][1].replace('PRODUCT_NAME', prod_name))
+            self.__prod_locator["name"][1][0],
+            self.__prod_locator["name"][1][1].replace('PRODUCT_NAME', prod_name))
 
         elem_name = self.wait_for_element(locator)
 
@@ -189,8 +189,8 @@ class CartProduct(ABCProduct, Mediator):
         :type expected_size: str
         """
         locator = (
-            self.prod_locator["size"][1][0],
-            self.prod_locator["size"][1][1].replace('PRODUCT_NAME', prod_name))
+            self.__prod_locator["size"][1][0],
+            self.__prod_locator["size"][1][1].replace('PRODUCT_NAME', prod_name))
 
         actual_size = self.get_element_text(locator)
 
@@ -206,8 +206,8 @@ class CartProduct(ABCProduct, Mediator):
         :type expected_color: str
         """
         locator = (
-            self.prod_locator["color"][1][0],
-            self.prod_locator["color"][1][1].replace('PRODUCT_NAME', prod_name))
+            self.__prod_locator["color"][1][0],
+            self.__prod_locator["color"][1][1].replace('PRODUCT_NAME', prod_name))
 
         actual_color = self.get_element_text(locator)
 
@@ -219,12 +219,12 @@ class CartProduct(ABCProduct, Mediator):
 
         :return: int, quantity
         """
-        # button_add = self.find_element(self.prod_locator["add_to_cart"][1])
+        # button_add = self.find_element(self.__prod_locator["add_to_cart"][1])
         #
         # button_add.click()
         #
         # # Waiting while product is adding to the cart
-        # self.wait_for_element(self.prod_locator["add_to_cart"][1])
+        # self.wait_for_element(self.__prod_locator["add_to_cart"][1])
         pass
 
     def select_color(self, color):
@@ -240,8 +240,8 @@ class CartProduct(ABCProduct, Mediator):
         """
         # color = color.capitalize()
         # color_locator = (
-        #     self.prod_locator["color"][1][0],
-        #     self.prod_locator["color"][1][1].replace('COLOR', color))
+        #     self.__prod_locator["color"][1][0],
+        #     self.__prod_locator["color"][1][1].replace('COLOR', color))
         #
         # color_elem = self.wait_for_element(color_locator)
         # color_elem.click()
@@ -263,8 +263,8 @@ class CartProduct(ABCProduct, Mediator):
         # size = size.upper()
         #
         # size_locator = (
-        #     self.prod_locator["size"][1][0],
-        #     self.prod_locator["size"][1][1].replace('SIZE', size))
+        #     self.__prod_locator["size"][1][0],
+        #     self.__prod_locator["size"][1][1].replace('SIZE', size))
         #
         # color_elem = self.wait_for_element(size_locator)
         # color_elem.click()
