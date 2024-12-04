@@ -5,14 +5,14 @@ from utils import verify
 class LoginFacade:
 
     def __init__(self, driver, url: str):
-        self._login_page = LoginPage(driver, url)
+        self.__login_page = LoginPage(driver, url)
 
     def load(self):
         """
         Load Login page
         :return:
         """
-        self._login_page.load()
+        self.__login_page.load()
 
     def login(self, username, password):
         """
@@ -20,9 +20,9 @@ class LoginFacade:
         :param username: username
         :param password: password
         """
-        self._login_page.username_field.enter(username)
-        self._login_page.password_field.enter(password)
-        self._login_page.login_button.enter()
+        self.__login_page.username_field.enter(username)
+        self.__login_page.password_field.enter(password)
+        self.__login_page.login_button.enter()
 
     def login_and_verify_error(self, username, password, message):
         """
@@ -34,6 +34,6 @@ class LoginFacade:
         self.login(username, password)
 
         verify.is_equal(
-            self._login_page.find_element(self._login_page.error_message.locator).text,
+            self.__login_page.find_element(self.__login_page.error_message.locator).text,
             message,
             f"Error message '{message}' should be displayed.")
