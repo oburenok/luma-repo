@@ -19,7 +19,7 @@ class Product(ABCProduct, Mediator):
     def __init__(self, driver, url: str):
         Mediator.__init__(self, driver, url)
 
-    prod_locator = {
+    __prod_locator = {
         "name": ["elem_type", (By.CSS_SELECTOR, ".page-title")],
         "price": ["elem_type", (By.XPATH, "//div[@class='product-info-price']//span[@class='price']")],
         "qty": ["elem_type", (By.ID, "qty")],
@@ -35,7 +35,7 @@ class Product(ABCProduct, Mediator):
 
         :return: str, price
         """
-        elem_price = self.get_element_text(self.prod_locator["price"][1])
+        elem_price = self.get_element_text(self.__prod_locator["price"][1])
 
         # removing symbol $
         elem_price = elem_price[1:]
@@ -60,7 +60,7 @@ class Product(ABCProduct, Mediator):
 
         :return: int, quantity
         """
-        elem_qty = self.find_element(self.prod_locator["qty"][1])
+        elem_qty = self.find_element(self.__prod_locator["qty"][1])
 
         elem_qty = int(elem_qty.get_attribute("value"))
 
@@ -84,7 +84,7 @@ class Product(ABCProduct, Mediator):
 
         :return: str
         """
-        elem_name = self.get_element_text(self.prod_locator["name"][1])
+        elem_name = self.get_element_text(self.__prod_locator["name"][1])
 
         return elem_name
 
@@ -106,12 +106,12 @@ class Product(ABCProduct, Mediator):
 
         :return: int, quantity
         """
-        button_add = self.find_element(self.prod_locator["add_to_cart"][1])
+        button_add = self.find_element(self.__prod_locator["add_to_cart"][1])
 
         button_add.click()
 
         # Waiting while product is adding to the cart
-        self.wait_for_element_disappear(self.prod_locator["spinning_cyrcle"][1])
+        self.wait_for_element_disappear(self.__prod_locator["spinning_cyrcle"][1])
 
     def select_color(self, color):
         """
@@ -126,8 +126,8 @@ class Product(ABCProduct, Mediator):
         """
         color = color.capitalize()
         color_locator = (
-            self.prod_locator["color"][1][0],
-            self.prod_locator["color"][1][1].replace('COLOR', color))
+            self.__prod_locator["color"][1][0],
+            self.__prod_locator["color"][1][1].replace('COLOR', color))
 
         color_elem = self.wait_for_element(color_locator)
         color_elem.click()
@@ -148,8 +148,8 @@ class Product(ABCProduct, Mediator):
         size = size.upper()
 
         size_locator = (
-            self.prod_locator["size"][1][0],
-            self.prod_locator["size"][1][1].replace('SIZE', size))
+            self.__prod_locator["size"][1][0],
+            self.__prod_locator["size"][1][1].replace('SIZE', size))
 
         size_elem = self.wait_for_element(size_locator)
         size_elem.click()
@@ -164,5 +164,5 @@ class Product(ABCProduct, Mediator):
         :type qty: int
         :return:
         """
-        self.enter_value_in_field(self.prod_locator["qty"][1], qty)
+        self.enter_value_in_field(self.__prod_locator["qty"][1], qty)
 
