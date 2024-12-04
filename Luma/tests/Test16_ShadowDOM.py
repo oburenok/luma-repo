@@ -1,3 +1,6 @@
+"""
+This is more experimental test for Shadow DOM elements, and it is not actually related to Test Framework.
+"""
 import pytest
 import time
 
@@ -7,7 +10,7 @@ from utils import log
 
 
 @pytest.mark.usefixtures("driver")
-class Test10ProductPageMainOperation:
+class Test16ShadowDOM:
 
     def test_01_verify_default_product_info(self):
 
@@ -36,5 +39,5 @@ class Test10ProductPageMainOperation:
         elem = shadow_host.shadow_root.find_element(By.CSS_SELECTOR, 'input[id="email"]')
         elem.send_keys("my email")
 
-        time.sleep(15)
+        time.sleep(1.5)
 
