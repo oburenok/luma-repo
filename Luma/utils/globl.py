@@ -40,5 +40,3 @@ logging_level = 'INFO'
 
 
 # Parameters Jenkins
-run_jenkins = False
-# project_path for Jenkins will be C:\Users\oburenok\.jenkins\workspace\Selenium Python GitHub\Luma

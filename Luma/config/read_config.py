@@ -66,10 +66,7 @@ class GetConfig:
         from section [Test]
         """
 
-        if globl.run_jenkins:
-            globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3].split('/')[-1]
-        else:
-            globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3]
+        globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3].split('/')[-1]
 
     def read_project_section(self):
         """
