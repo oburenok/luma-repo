@@ -30,10 +30,6 @@ class GetConfig:
         """
         len_name = len(globl.project_name)
 
-        if globl.run_jenkins:
-            globl.project_path = path + '\\' + globl.project_name
-            return globl.project_path
-
         if path[-len_name:] == globl.project_name:
             globl.project_path = path
             return path
