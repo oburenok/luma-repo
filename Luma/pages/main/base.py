@@ -96,7 +96,7 @@ class BasePage(ABCPage, Mediator):
         :return:
         """
         try:
-            ads = self.wait_for_element(self.locator["ads"][1], timeout=10)
+            ads = self.wait_for_element(self.locator["ads"][1], timeout=10, wait_for_ads=True)
             time.sleep(1.2)
 
             if ads.get_attribute("data-anchor-status") == "displayed":
@@ -109,7 +109,7 @@ class BasePage(ABCPage, Mediator):
                 time.sleep(1.3)
 
         except UnboundLocalError:
-            log.message("Ads wasn't displayed. Normal behaviour.")
+            log.message("NOTICE: Ads wasn't displayed. Normal behaviour.")
 
     def sign_in(self):
         """To be defined"""
