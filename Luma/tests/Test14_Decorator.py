@@ -6,6 +6,8 @@ import pytest
 from pages.cart_page.cart_page import CartPage
 from utils import log, decorators
 
+pytestmark = [pytest.mark.run_every_night]
+
 
 PI_NUMBER = 3.1415926
 string_variable = "Test string for global variable."
