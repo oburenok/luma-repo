@@ -11,7 +11,7 @@ class Test10ProductPageMainOperation:
 
     @pytest.mark.parametrize(
         "test_data",
-        read_data.excel_to_dict('Test10_ProductPageMainOperation.xlsx', 'ProductPage_1'))
+        read_data.excel_to_dict('Test_10_ProductPageMainOperation.xlsx', 'ProductPage_1'))
     def test_01_verify_adding_product_to_cart(self, test_data):
 
         self.productPage = ProductPage(self.driver, self.url)

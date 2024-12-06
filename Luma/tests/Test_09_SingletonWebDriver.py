@@ -11,7 +11,7 @@ from utils import log, read_data, start_browser
 @pytest.mark.usefixtures("driver")
 class Test09SingletonWebDriver:
 
-    @pytest.mark.parametrize("test_data", read_data.excel_to_dict('Test09_SingletonWebDriver.xlsx', 'SearchResults1'))
+    @pytest.mark.parametrize("test_data", read_data.excel_to_dict('Test_09_SingletonWebDriver.xlsx', 'SearchResults1'))
     def test_01_driver_by_default(self, test_data):
         log.message("CURRENT WebDRIVER IS:")
         log.message(self.driver)
@@ -25,7 +25,7 @@ class Test09SingletonWebDriver:
         log.message("Verify number of products on the page.")
         self.results_page.count_products(test_data["found_products_number"])
 
-    @pytest.mark.parametrize("test_data", read_data.excel_to_dict('Test09_SingletonWebDriver.xlsx', 'SearchResults2'))
+    @pytest.mark.parametrize("test_data", read_data.excel_to_dict('Test_09_SingletonWebDriver.xlsx', 'SearchResults2'))
     def test_02_new_driver_instance(self, test_data):
         log.message("Create new instance of WebDriver.")
         new_instance = start_browser.RunBrowser("chrome", self.url)
