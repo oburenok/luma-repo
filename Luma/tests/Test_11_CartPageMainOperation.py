@@ -20,7 +20,7 @@ class Test11CartPageMainOperation:
     @pytest.mark.order(30)
     @pytest.mark.parametrize(
         "test_data",
-        read_data.excel_to_dict('Test11_CartPageMainOperation.xlsx', 'CartPage_1'))
+        read_data.excel_to_dict('Test_11_CartPageMainOperation.xlsx', 'CartPage_1'))
     def test_03_verify_product_in_cart(self, test_data):
 
         self.cartPage = CartPage(self.driver, self.url)
@@ -54,7 +54,7 @@ class Test11CartPageMainOperation:
     @pytest.mark.order(10)
     @pytest.mark.parametrize(
         "test_data",
-        read_data.excel_to_dict('Test11_CartPageMainOperation.xlsx', 'ProductPage_1'))
+        read_data.excel_to_dict('Test_11_CartPageMainOperation.xlsx', 'ProductPage_1'))
     def test_01_verify_adding_product_to_cart(self, test_data):
         self.productPage = ProductPage(self.driver, self.url)
 
