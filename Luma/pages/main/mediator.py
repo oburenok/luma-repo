@@ -81,8 +81,9 @@ class Mediator:
             element = WebDriverWait(self.driver, timeout, poll_frequency=1).until(
                     EC.visibility_of_element_located(loc))
 
-        except:
+        except Exception as exc:
             if wait_for_ads:
+                log.warning(f"Ads exception: \n{exc}")
                 return False
 
             exception_info = traceback.format_exc()
