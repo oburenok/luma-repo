@@ -60,7 +60,7 @@ class Mediator:
         """
         return self.find_element(loc).text
 
-    def wait_for_element(self, loc, timeout=60, **kwargs):
+    def wait_for_element(self, loc, timeout=60):
         """
         Wait for element
 
@@ -68,24 +68,17 @@ class Mediator:
         :param timeout: int
         :param loc: locator for element, should look like (By.XPATH, "//input[@id='price']")
         :type loc: tuple
-        :param wait_for_ads: if waiting for Ads or other elements which may or may not display, and it is expected behaviour
-        :type wait_for_ads: bln
 
         :return: webelement
 
         Example:
             self.wait_for_element(self.locator["search_btn"][1])
         """
-        wait_for_ads = kwargs.get("wait_for_ads", False)
         try:
             element = WebDriverWait(self.driver, timeout, poll_frequency=1).until(
                     EC.visibility_of_element_located(loc))
 
-        except Exception as exc:
-            if wait_for_ads:
-                log.warning(f"Ads exception: \n{exc}")
-                return False
-
+        except:
             exception_info = traceback.format_exc()
             log.exception(f"An exception occurred while waiting for element!!! \n {exception_info}")
 

@@ -96,7 +96,7 @@ class BasePage(ABCPage, Mediator):
         :return:
         """
         try:
-            ads = self.wait_for_element(self.locator["ads"][1], timeout=10, wait_for_ads=True)
+            ads = self.wait_for_element(self.locator["ads"][1], timeout=10)
             time.sleep(1.2)
 
             if ads.get_attribute("data-anchor-status") == "displayed":
