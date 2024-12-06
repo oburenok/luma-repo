@@ -2,6 +2,8 @@ import pytest
 
 from pages.test_builder.test_builder import TestBuilder
 
+pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
+
 
 @pytest.mark.usefixtures("driver")
 class Test12TestBuilder:

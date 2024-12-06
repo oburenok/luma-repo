@@ -8,6 +8,8 @@ from pages.results_page.results_page import ResultsPage
 from pages.login_page.login_page import LoginPage
 from utils import log
 
+pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
+
 
 @pytest.mark.usefixtures("driver")
 class Test08LoginComposite:

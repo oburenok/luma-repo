@@ -8,6 +8,8 @@ from selenium.webdriver.common.by import By
 from pages.product_page.product_page import ProductPage
 from utils import log
 
+pytestmark = [pytest.mark.integration]
+
 
 @pytest.mark.usefixtures("driver")
 class Test16ShadowDOM:

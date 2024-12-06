@@ -7,6 +7,8 @@ import time
 
 from utils import log
 
+pytestmark = [pytest.mark.outdated]
+
 
 @pytest.mark.usefixtures("driver")
 class Test02Luma:

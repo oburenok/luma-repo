@@ -3,6 +3,8 @@ import pytest
 from pages.product_page.product_page import ProductPage
 from utils import log, read_data
 
+pytestmark = [pytest.mark.integration]
+
 
 @pytest.mark.usefixtures("driver")
 class Test10ProductPageMainOperation:

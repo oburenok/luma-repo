@@ -4,6 +4,8 @@ from pages.product_page.product_page import ProductPage
 from pages.cart_page.cart_page import CartPage
 from utils import log, read_data
 
+pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
+
 
 @pytest.mark.usefixtures("driver")
 class Test11CartPageMainOperation:

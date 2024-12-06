@@ -6,6 +6,8 @@ import pytest
 from pages.login_page.login_facade import LoginFacade
 from utils import log
 
+pytestmark = [pytest.mark.run_every_night]
+
 
 @pytest.mark.usefixtures("driver")
 class Test17LoginFacade:

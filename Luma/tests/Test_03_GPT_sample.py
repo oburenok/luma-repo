@@ -7,6 +7,8 @@ import time
 
 from utils import log
 
+pytestmark = [pytest.mark.run_every_night]
+
 
 @pytest.mark.usefixtures("driver")
 class Test03GPTsample:

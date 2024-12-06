@@ -7,6 +7,8 @@ import pytest
 from pages.home_page.home_page import HomePage
 from utils import save_data, log
 
+pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
+
 
 def increase_search_product(searched_product):
     """

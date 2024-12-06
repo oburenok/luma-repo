@@ -7,6 +7,8 @@ import pytest
 from pages.results_page.results_page import ResultsPage
 from utils import log
 
+pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
+
 
 @pytest.mark.usefixtures("driver")
 class Test06ParametrizeSearch:

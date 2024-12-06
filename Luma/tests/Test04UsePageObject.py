@@ -8,6 +8,7 @@ from pages.home_page.home_page import HomePage
 from utils import log
 
 # pytestmark = pytest.mark.skipif(pytest.__version__ != '7.3.2', reason='Pytest version is less then 7.3.2')
+pytestmark = [pytest.mark.run_every_night]
 
 
 @pytest.mark.usefixtures("driver")

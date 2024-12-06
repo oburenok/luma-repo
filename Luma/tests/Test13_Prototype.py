@@ -3,9 +3,11 @@ import pytest
 from pages.test_builder.test_builder import TestBuilder
 from pages.cart_page.cart_page import ProductParam
 
+pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
+
 
 @pytest.mark.usefixtures("driver")
-class Test12TestBuilder:
+class Test13Prototype:
 
     def test_01_assortment(self):
 

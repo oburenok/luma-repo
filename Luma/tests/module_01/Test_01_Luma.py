@@ -8,6 +8,8 @@ import pytest
 from pages.main.base import BasePage
 from utils import log
 
+pytestmark = [pytest.mark.outdated]
+
 
 @pytest.mark.usefixtures("driver")
 class Test01Luma:
