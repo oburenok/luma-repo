@@ -4,6 +4,7 @@ This is the mediator, it contains all methods which call Selenium WebDriver.
 import traceback
 
 from selenium import webdriver
+from selenium.common import exceptions as exc
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -102,8 +103,8 @@ class Mediator:
             element = WebDriverWait(self.driver, timeout, poll_frequency=1).until(
                     EC.visibility_of_element_located(loc))
 
-        except TimeoutError:
-            log.exception("Ads wasn't found.")
+        except exc.TimeoutException:
+            log.message("Ads waiting timeout has expired!!!")
             return False
 
         return element
