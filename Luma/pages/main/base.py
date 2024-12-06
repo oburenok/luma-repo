@@ -93,23 +93,31 @@ class BasePage(ABCPage, Mediator):
         """
         Closing Footer Ads if it's shown.
 
-        :return:
+        :return: True - if footer Ads was closed,
+                 False - if footer Ads wasn't closed or wasn't displayed at all.
         """
-        try:
-            ads = self.wait_for_element(self.locator["ads"][1], timeout=10)
-            time.sleep(1.2)
-
-            if ads.get_attribute("data-anchor-status") == "displayed":
-
-                log.message("Footer Ads were displayed => Closing.")
-                ads_panel = self.wait_for_element(self.locator["ads_panel"][1])
-                self.actions.move_to_element(ads_panel).send_keys(Keys.SHIFT + Keys.TAB).click().perform()
-
-                # Waiting for the Ads banner to drop
-                time.sleep(1.3)
-
-        except UnboundLocalError:
+        # try:
+        ads = self.wait_for_ads(self.locator["ads"][1], timeout=10)
+        if ads is False:
             log.message("NOTICE: Ads wasn't displayed. Normal behaviour.")
+            return False
+
+        time.sleep(1.2)
+
+        if ads.get_attribute("data-anchor-status") == "displayed":
+
+            log.message("Footer Ads were displayed => Closing.")
+            ads_panel = self.wait_for_ads(self.locator["ads_panel"][1], timeout=10)
+            self.actions.move_to_element(ads_panel).send_keys(Keys.SHIFT + Keys.TAB).click().perform()
+
+            # Waiting for the Ads banner to drop
+            time.sleep(1.3)
+            return True
+
+        return False
+
+        # except UnboundLocalError:
+        #     log.message("====================")
 
     def sign_in(self):
         """To be defined"""

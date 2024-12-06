@@ -84,6 +84,30 @@ class Mediator:
 
         return element
 
+    def wait_for_ads(self, loc, timeout=60):
+        """
+        Wait for element
+
+        :param timeout: time to wait in second, before return error
+        :param timeout: int
+        :param loc: locator for element, should look like (By.XPATH, "//div[@class='grippy-host']//parent::ins")
+        :type loc: tuple
+
+        :return: webelement, or False - if element is not found (displayed).
+
+        Example:
+            self.wait_for_ads(self.locator["ads"][1], timeout=10)
+        """
+        try:
+            element = WebDriverWait(self.driver, timeout, poll_frequency=1).until(
+                    EC.visibility_of_element_located(loc))
+
+        except TimeoutError:
+            log.exception("Ads wasn't found.")
+            return False
+
+        return element
+
     def wait_for_element_disappear(self, loc, timeout=60):
         """
         Wait while element disappear
