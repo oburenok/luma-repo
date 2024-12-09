@@ -78,7 +78,7 @@ def excel_to_dict(file_path, sheet):
     """
     test_data = []
 
-    data_xlsx = pd.read_excel(file_path, sheet)
+    data_xlsx = pd.read_excel(file_path, sheet, dtype=str)
     data_xlsx = data_xlsx.to_dict()
 
     for row in range(0, len(data_xlsx['data_id'])):
