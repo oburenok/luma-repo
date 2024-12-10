@@ -23,7 +23,7 @@ class ResultsPage(BasePage):
         it can also verify if it's expected number or not.
 
         :param expected_count: Expected number of products
-        :type expected_count: int
+        :type expected_count: str
 
         :return:
                 number of products, int
@@ -34,7 +34,7 @@ class ResultsPage(BasePage):
         products_count = len(self.find_elements(self.p_locator["products_list"][1]))
 
         if expected_count is not None:
-            verify.is_equal(products_count, expected_count, f"Result page should contains {expected_count} product(s).")
+            verify.is_equal(str(products_count), expected_count, f"Result page should contains {expected_count} product(s).")
 
         return products_count
 
