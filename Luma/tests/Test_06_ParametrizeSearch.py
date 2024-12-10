@@ -13,7 +13,7 @@ pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
 @pytest.mark.usefixtures("driver")
 class Test06ParametrizeSearch:
 
-    @pytest.mark.parametrize('product, counter', [('bag', 10), ('tshirt', 0), ('watch', 9)])
+    @pytest.mark.parametrize('product, counter', [('bag', '10'), ('tshirt', '0'), ('watch', '9')])
     def test_01_use_base_page_object(self, product, counter):
         self.results_page = ResultsPage(self.driver, self.url)
 
