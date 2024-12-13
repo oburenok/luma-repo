@@ -96,7 +96,6 @@ class BasePage(ABCPage, Mediator):
         :return: True - if footer Ads was closed,
                  False - if footer Ads wasn't closed or wasn't displayed at all.
         """
-        # try:
         ads = self.wait_for_ads(self.locator["ads"][1], timeout=15)
         if ads is False:
             log.message("NOTICE: Ads wasn't displayed. Normal behaviour.")
@@ -115,9 +114,6 @@ class BasePage(ABCPage, Mediator):
             return True
 
         return False
-
-        # except UnboundLocalError:
-        #     log.message("====================")
 
     def sign_in(self):
         """To be defined"""
