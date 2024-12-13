@@ -22,9 +22,6 @@ class Test01Luma:
         self.home_page.enter_text_in_search_field("Tank")
         self.home_page.click_search()
 
-        time.sleep(2)
-
-    # @pytest.mark.skip()
     def test_02_navigation_to_google(self):
         self.driver.get("https://www.google.com.ua")
         log.message("bla-bla-bla")
@@ -37,7 +34,4 @@ class Test01Luma:
 
         log.message("Add more comments")
         log.message("to simulate testing process.")
-
-        # log.critical("Log critical to increase critical counter.")
-        # time.sleep(1.5)
 

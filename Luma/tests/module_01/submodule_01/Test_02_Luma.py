@@ -3,7 +3,6 @@ This is a first test for commercial website Luma.
 """
 
 import pytest
-import time
 
 from utils import log
 
@@ -45,5 +44,4 @@ class Test02Luma:
         log.message("to simulate testing process.")
 
         log.critical("Log critical to increase critical counter.")
-        time.sleep(1.5)
 

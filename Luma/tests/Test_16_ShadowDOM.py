@@ -26,8 +26,6 @@ class Test16ShadowDOM:
         elem = shadow_host.shadow_root.find_element(By.CSS_SELECTOR, 'input[id="fname"]')
         elem.send_keys("my name")
 
-        time.sleep(1.5)
-
         log.message("Enter text in the field in Shadow DOM (closed). Reopen Shadow DOM by CDP")
         self.driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {'source': """
         Element.prototype._attachShadow = Element.prototype.attachShadow;
@@ -40,6 +38,4 @@ class Test16ShadowDOM:
         shadow_host = self.driver.find_element(By.XPATH, "//div[@id='close-shadow']")
         elem = shadow_host.shadow_root.find_element(By.CSS_SELECTOR, 'input[id="email"]')
         elem.send_keys("my email")
-
-        time.sleep(1.5)
 
