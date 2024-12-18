@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.firefox.service import Service as FFService
 from utils.singleton import SingletonMeta
-from utils import log, globl
+from utils import globl
 
 
 class RunBrowser():
@@ -26,14 +26,12 @@ class RunBrowser():
         This method starting browser and navigate to starting page
         :return:
         """
-        log.message(f"Starting browser '{browser}'.")
         browse_drivers = {'chrome': self.run_chrome,
                           'firefox': self.run_firefox,
                           'edge': self.run_edge}
 
         self.driver = browse_drivers[browser]()
 
-        log.message(f"Navigating to start page: {self.url}")
         self.driver.get(self.url)
         self.driver.maximize_window()
 
