@@ -9,31 +9,50 @@ from utils.start_browser import RunBrowser
 from utils import globl, log
 
 
-@pytest.fixture(scope="class")
-def driver(request):
+@pytest.fixture(scope="session", autouse=True)
+def get_config():
     """
-    This fixture reads config file, setup logging and starts appropriate webbrowser.
-    :param request: pytest fixture
+    This fixture reads config file
+
     :return:
             Nothing
     """
-
     # Get configuration settings
     config = GetConfig()
     config.read_all_sections()
 
+    return
+
+
+@pytest.fixture(scope="session", autouse=True)
+def driver(get_config):
+    """
+    This fixture starts configured web-browser.
+
+    :return:
+            Selenium Web-driver
+    """
+    # Start browser for testing
+    browser_instance = RunBrowser(globl.browser, globl.url)
+
+    yield browser_instance.driver
+
+    browser_instance.driver.quit()
+
+
+@pytest.fixture(scope="module", autouse=True)
+def setup_logging():
+    """
+    This fixture setup logging.
+
+    :return:
+            Nothing
+    """
     # Initiate logging
     log.custom_logger(globl.logging_level)
 
-    # Start browser for testing
-    log.message("Preparing driver.")
-    browser_instance = RunBrowser(globl.browser, globl.url)
-    request.cls.driver = browser_instance.driver
-    request.cls.url = globl.url
-
     yield
 
-    browser_instance.driver.quit()
     log.close_logger()
 
 
