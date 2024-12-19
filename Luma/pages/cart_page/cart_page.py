@@ -56,15 +56,7 @@ class CartProduct(ABCProduct, Mediator):
     def get_price(self):
         """
         CAN'T BE IMPLEMENTED ON CART PAGE
-
-        :return: str, price
         """
-        # elem_price = self.get_element_text(self.__prod_locator["price"][1])
-        #
-        # # removing symbol $
-        # elem_price = elem_price[1:]
-        #
-        # return elem_price
         pass
 
     def verify_price(self, prod_name, expected_price: str):
@@ -108,14 +100,7 @@ class CartProduct(ABCProduct, Mediator):
     def get_qty(self):
         """
         CAN'T BE IMPLEMENTED ON CART PAGE
-
-        :return: int, quantity
         """
-        # elem_qty = self.find_element(self.__prod_locator["qty"][1])
-        #
-        # elem_qty = int(elem_qty.get_attribute("value"))
-        #
-        # return elem_qty
         pass
 
     def verify_qty(self, prod_name, expected_qty):
@@ -156,12 +141,7 @@ class CartProduct(ABCProduct, Mediator):
     def get_name(self):
         """
         CAN'T BE IMPLEMENTED ON CART PAGE
-
-        :return: str
         """
-        # elem_name = self.get_element_text(self.__prod_locator["name"][1])
-        #
-        # return elem_name
         pass
 
     def verify_name(self, prod_name):
@@ -216,60 +196,19 @@ class CartProduct(ABCProduct, Mediator):
     def add_to_cart(self):
         """
         METHOD SHOULD BE REWORKED FOR 'MORE CHOICES' PRODUCTS
-
-        :return: int, quantity
         """
-        # button_add = self.find_element(self.__prod_locator["add_to_cart"][1])
-        #
-        # button_add.click()
-        #
-        # # Waiting while product is adding to the cart
-        # self.wait_for_element(self.__prod_locator["add_to_cart"][1])
         pass
 
-    def select_color(self, color):
+    def select_color(self):
         """
         CAN'T BE IMPLEMENTED ON CART PAGE
-
-        :param color: product color
-        :type color: str
-
-        Example:
-                product.select_color("Orange")
-                product.select_color("orange")
         """
-        # color = color.capitalize()
-        # color_locator = (
-        #     self.__prod_locator["color"][1][0],
-        #     self.__prod_locator["color"][1][1].replace('COLOR', color))
-        #
-        # color_elem = self.wait_for_element(color_locator)
-        # color_elem.click()
-        #
-        # return self
         pass
 
-    def select_size(self, size):
+    def select_size(self):
         """
         CAN'T BE IMPLEMENTED ON CART PAGE
-
-        :param size: product color
-        :type size: str
-
-        Example:
-                product.select_size('M')
-                product.select_size('xl')
         """
-        # size = size.upper()
-        #
-        # size_locator = (
-        #     self.__prod_locator["size"][1][0],
-        #     self.__prod_locator["size"][1][1].replace('SIZE', size))
-        #
-        # color_elem = self.wait_for_element(size_locator)
-        # color_elem.click()
-        #
-        # return self
         pass
 
 
@@ -284,4 +223,6 @@ class ProductParam:
         self.subtotal = subtotal
 
     def clone(self):
+        """This method makes a deep copy of class object."""
+
         return copy.deepcopy(self)
