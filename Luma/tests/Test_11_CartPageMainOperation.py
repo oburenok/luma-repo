@@ -2,83 +2,84 @@ import pytest
 
 from pages.product_page.product_page import ProductPage
 from pages.cart_page.cart_page import CartPage
-from utils import log, read_data
+from utils import log, globl, read_data
 
 pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
 
 
-@pytest.mark.usefixtures("driver")
-class Test11CartPageMainOperation:
+@pytest.mark.order(20)
+def test_02_navigate_to_cart_page(driver):
 
-    @pytest.mark.order(20)
-    def test_02_navigate_to_cart_page(self):
-        self.cartPage = CartPage(self.driver, self.url)
+    cart_page = CartPage(driver, globl.url)
 
-        log.step("2.001", "Navigate to Cart page")
-        self.cartPage.load()
+    log.step("2.001", "Navigate to Cart page")
+    cart_page.load()
 
-    @pytest.mark.order(30)
-    @pytest.mark.parametrize(
-        "test_data",
-        read_data.excel_to_dict('Test_11_CartPageMainOperation.xlsx', 'CartPage_1'))
-    def test_03_verify_product_in_cart(self, test_data):
 
-        self.cartPage = CartPage(self.driver, self.url)
+@pytest.mark.order(30)
+@pytest.mark.parametrize(
+    "test_data",
+    read_data.excel_to_dict('Test_11_CartPageMainOperation.xlsx', 'CartPage_1'))
+def test_03_verify_product_in_cart(driver, test_data):
 
-        log.step("3.001", "Verify product 'Zoe Tank' present in the cart.")
-        self.cartPage.product.verify_name(test_data["name"])
+    cart_page = CartPage(driver, globl.url)
 
-        log.step("3.002", "Verify product size and color.")
-        self.cartPage.product.verify_size(test_data["name"], test_data["size"])
-        self.cartPage.product.verify_color(test_data["name"], test_data["color"])
+    log.step("3.001", "Verify product 'Zoe Tank' present in the cart.")
+    cart_page.product.verify_name(test_data["name"])
 
-        log.step("3.003", "Verify product Price and Subtotal.")
-        self.cartPage.product.verify_price(test_data["name"], test_data["price"])
-        self.cartPage.product.verify_subtotal(test_data["name"], test_data["subtotal"])
+    log.step("3.002", "Verify product size and color.")
+    cart_page.product.verify_size(test_data["name"], test_data["size"])
+    cart_page.product.verify_color(test_data["name"], test_data["color"])
 
-        log.step("3.004", "Verify product quantity.")
-        self.cartPage.product.verify_qty(test_data["name"], test_data["qty"])
+    log.step("3.003", "Verify product Price and Subtotal.")
+    cart_page.product.verify_price(test_data["name"], test_data["price"])
+    cart_page.product.verify_subtotal(test_data["name"], test_data["subtotal"])
 
-        log.step("3.005", "Enter new product quantity.")
-        self.cartPage.product.enter_qty(test_data["name"], test_data["enter_qty"])
+    log.step("3.004", "Verify product quantity.")
+    cart_page.product.verify_qty(test_data["name"], test_data["qty"])
 
-    @pytest.mark.order(40)
-    def test_04_click_proceed_to_checkout(self):
+    log.step("3.005", "Enter new product quantity.")
+    cart_page.product.enter_qty(test_data["name"], test_data["enter_qty"])
 
-        self.cartPage = CartPage(self.driver, self.url)
 
-        log.step("4.001", "Click to button Proceed to Checkout")
-        # Click to button temporary disabled because of interceptioin
-        self.cartPage.click_proceed_to_checkout()
+@pytest.mark.order(40)
+def test_04_click_proceed_to_checkout(driver):
 
-    @pytest.mark.order(10)
-    @pytest.mark.parametrize(
-        "test_data",
-        read_data.excel_to_dict('Test_11_CartPageMainOperation.xlsx', 'ProductPage_1'))
-    def test_01_verify_adding_product_to_cart(self, test_data):
-        self.productPage = ProductPage(self.driver, self.url)
+    cart_page = CartPage(driver, globl.url)
 
-        self.productPage.navigate_to_page(test_data["product_page"])
+    log.step("4.001", "Click to button Proceed to Checkout")
+    cart_page.click_proceed_to_checkout()
 
-        log.step("1.001", "Verify product name.")
-        self.productPage.product.verify_name(test_data["name"])
 
-        log.step("1.002", "Verify product price.")
-        self.productPage.product.verify_price(test_data["price"])
+@pytest.mark.order(10)
+@pytest.mark.parametrize(
+    "test_data",
+    read_data.excel_to_dict('Test_11_CartPageMainOperation.xlsx', 'ProductPage_1'))
+def test_01_verify_adding_product_to_cart(driver, test_data):
 
-        log.step("1.003", "Verify default product quantity.")
-        self.productPage.product.verify_qty(test_data["quantity"])
+    product_page = ProductPage(driver, globl.url)
 
-        log.step("1.004", "Choose size S and color green")
-        self.productPage.product.select_size(test_data["size"])
-        self.productPage.product.select_color(test_data["color"])
+    product_page.navigate_to_page(test_data["product_page"])
 
-        log.step("1.005", "Enter product quantity.")
-        self.productPage.product.enter_qty(test_data["enter_qty"])
+    log.step("1.001", "Verify product name.")
+    product_page.product.verify_name(test_data["name"])
 
-        log.step("1.005", "Adding product to the cart.")
-        self.productPage.product.add_to_cart()
+    log.step("1.002", "Verify product price.")
+    product_page.product.verify_price(test_data["price"])
 
-        log.step("1.006", "Verify cart title quantity.")
-        self.productPage.cart.verify_title_quantity(test_data["title_qty"])
+    log.step("1.003", "Verify default product quantity.")
+    product_page.product.verify_qty(test_data["quantity"])
+
+    log.step("1.004", "Choose size S and color green")
+    product_page.product.select_size(test_data["size"])
+    product_page.product.select_color(test_data["color"])
+
+    log.step("1.005", "Enter product quantity.")
+    product_page.product.enter_qty(test_data["enter_qty"])
+
+    log.step("1.005", "Adding product to the cart.")
+    product_page.product.add_to_cart()
+
+    log.step("1.006", "Verify cart title quantity.")
+    product_page.cart.verify_title_quantity(test_data["title_qty"])
 
