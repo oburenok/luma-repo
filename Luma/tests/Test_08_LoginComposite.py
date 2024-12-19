@@ -4,27 +4,22 @@ This is a Login test for commercial website Luma.
 
 import pytest
 
-from pages.results_page.results_page import ResultsPage
 from pages.login_page.login_page import LoginPage
-from utils import log
+from utils import log, globl
 
 pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
 
 
-@pytest.mark.usefixtures("driver")
-class Test08LoginComposite:
+def test_01_logging(driver):
 
-    def test_01_logging(self):
+    login_page = LoginPage(driver, globl.url)
 
-        self.results_page = ResultsPage(self.driver, self.url)
-        self.loginPage = LoginPage(self.driver, self.url)
+    log.message("Logging to the site Luma and verify error.")
+    login_page.load()
+    login_page.login_and_verify_error("invalid@gmail.com", "qwerty12345",
+                                          "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.")
 
-        log.message("Logging to the site Luma and verify error.")
-        self.loginPage.load()
-        self.loginPage.login_and_verify_error("invalid@gmail.com", "qwerty12345",
-                                              "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.")
-
-        log.message("Logging to the site Luma.")
-        self.loginPage.load()
-        self.loginPage.login("User1@gmail.com", "qwerty12345")
+    log.message("Logging to the site Luma.")
+    login_page.load()
+    login_page.login("User1@gmail.com", "qwerty12345")
 
