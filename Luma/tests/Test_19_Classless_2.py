@@ -7,7 +7,7 @@ import pytest
 from pages.results_page.results_page import ResultsPage
 from utils import log, globl
 
-pytestmark = [pytest.mark.run_every_night, pytest.mark.integration, pytest.mark.debug]
+pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
 
 
 @pytest.mark.parametrize('product, counter', [('bag', '10'), ('tshirt', '0'), ('watch', '9')])
