@@ -43,7 +43,7 @@ class BasePage(ABCPage, Mediator):
         :return:
                 nothing
         """
-        elem_search_field = self.find_element(self.locator["search"][1])
+        elem_search_field = self.wait_for_element(self.locator["search"][1])
 
         log.message("Clean up search field.")
         elem_search_field.send_keys(Keys.CONTROL + 'a')
