@@ -96,7 +96,7 @@ class BasePage(ABCPage, Mediator):
         :return: True - if footer Ads was closed,
                  False - if footer Ads wasn't closed or wasn't displayed at all.
         """
-        ads = self.wait_for_ads(self.locator["ads"][1], timeout=15)
+        ads = self.wait_for_ads(self.locator["ads"][1], timeout=5)
         if ads is False:
             log.message("NOTICE: Ads wasn't displayed. Normal behaviour.")
             return False
@@ -106,7 +106,7 @@ class BasePage(ABCPage, Mediator):
         if ads.get_attribute("data-anchor-status") == "displayed":
 
             log.message("Footer Ads were displayed => Closing.")
-            ads_panel = self.wait_for_ads(self.locator["ads_panel"][1], timeout=15)
+            ads_panel = self.wait_for_ads(self.locator["ads_panel"][1], timeout=5)
             self.actions.move_to_element(ads_panel).send_keys(Keys.SHIFT + Keys.TAB).click().perform()
 
             # Waiting for the Ads banner to drop
