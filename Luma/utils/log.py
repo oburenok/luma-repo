@@ -26,6 +26,7 @@ def custom_logger(log_level=logging.INFO):
     # By default, log all messages
     logger.setLevel(logging.DEBUG)
 
+    globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3].split('/')[-1]
     test_report_dir = globl.reports_path + '\\' + globl.test_name
 
     if not os.path.isdir(test_report_dir):
