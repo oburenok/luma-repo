@@ -1,3 +1,7 @@
+"""
+This is a first test for commercial website Luma.
+"""
+
 import pytest
 
 from pages.product_page.product_page import ProductPage

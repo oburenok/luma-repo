@@ -1,3 +1,7 @@
+"""
+This is a first test for commercial website Luma.
+"""
+
 import pytest
 
 from pages.test_builder.test_builder import TestBuilder
