@@ -13,6 +13,7 @@ pytestmark = [pytest.mark.run_every_night]
 
 def test_01_use_base_page_object(driver):
     home_page = HomePage(driver, globl.url)
+    home_page.load()
 
     log.message("Search product.")
     home_page.enter_text_in_search_field("Tank")
