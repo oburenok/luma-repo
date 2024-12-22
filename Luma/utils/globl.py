@@ -7,10 +7,11 @@ browser = None
 
 
 # List of test parameters
-test_path = None
-test_report_path =None
 test_name = None
 test_method_name = None
+test_path = None
+test_report_path = None
+test_report_file = None
 test_counters = {'total_checkpoints': 0,
                  'total_warnings': 0,
                  'total_errors': 0,
