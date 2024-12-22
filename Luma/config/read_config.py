@@ -62,4 +62,3 @@ class GetConfig:
         """
 
         globl.reports_path = globl.project_path + '\\reports'
-        globl.test_path = os.getcwd()
