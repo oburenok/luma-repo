@@ -10,6 +10,8 @@ import pyautogui
 from utils import globl
 
 LOGGER_NAME = "Custom Logger"
+_file_handler = None
+_console_handler = None
 
 
 def custom_logger(log_level=logging.INFO):
@@ -21,39 +23,55 @@ def custom_logger(log_level=logging.INFO):
     :return:
             logger
     """
+    global _file_handler, _console_handler
+
     logger = logging.getLogger(LOGGER_NAME)
 
     # By default, log all messages
     logger.setLevel(logging.DEBUG)
 
     globl.test_name = (os.environ.get('PYTEST_CURRENT_TEST').split('::')[0])[:-3].split('/')[-1]
-    test_report_dir = globl.reports_path + '\\' + globl.test_name
+    globl.test_report_path = globl.reports_path + '\\' + globl.test_name
 
-    if not os.path.isdir(test_report_dir):
-        os.makedirs(test_report_dir)
-
-    globl.test_report_path = test_report_dir
+    if not os.path.isdir(globl.test_report_path):
+        os.makedirs(globl.test_report_path)
 
     now = datetime.datetime.now()
 
-    report_path = test_report_dir + '\\' + globl.test_name + now.strftime("_%Y%m%d_%H%M%S") + '.log'
+    globl.test_report_file = globl.test_report_path + '\\' + globl.test_name + now.strftime("_%Y%m%d_%H%M%S") + '.log'
 
-    file_handler = logging.FileHandler(report_path, mode='a')
-    file_handler.setLevel(log_level)
+    _file_handler = logging.FileHandler(globl.test_report_file, mode='a')
+    _file_handler.setLevel(log_level)
 
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(log_level)
+    _console_handler = logging.StreamHandler()
+    _console_handler.setLevel(log_level)
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s',
                                   datefmt='%m/%d/%Y %I:%M:%S %p')
 
-    file_handler.setFormatter(formatter)
-    console_handler.setFormatter(formatter)
+    _file_handler.setFormatter(formatter)
+    _console_handler.setFormatter(formatter)
 
-    logger.addHandler(console_handler)
-    logger.addHandler(file_handler)
+    logger.addHandler(_console_handler)
+    logger.addHandler(_file_handler)
+
+    add_init_info()
 
     return logger
+
+
+def add_init_info():
+    """
+    This function adds initial information about test.
+    """
+    message("******************* GENERAL INFO **********************")
+    message(f"Test browser is:  {globl.browser}")
+    message(f"Start page is :  {globl.url}")
+    message(f"Project path is:  {globl.project_path}")
+    message(f"Test name is:  {globl.test_name}")
+    message(f"Reports path is:  {globl.reports_path}")
+    message(f"Test report path  is:  {globl.test_report_path}")
+    message(f"Test report file is:  {globl.test_report_file}")
 
 
 def screenshot(suffix=''):
@@ -201,4 +219,9 @@ def close_logger():
     :return:
             Nothing
     """
-    logging.shutdown()
+    global _file_handler, _console_handler
+    logger = logging.getLogger(LOGGER_NAME)
+
+    logger.removeHandler(_file_handler)
+    logger.removeHandler(_console_handler)
+
