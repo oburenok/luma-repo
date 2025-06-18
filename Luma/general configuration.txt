@@ -1,0 +1,23 @@
+
+
+Repository URL:		https://github.com/oburenok/luma-repo.git
+
+Credentials: 	oleksandr.bu@gmail.com/******
+
+Branch Specifier:	*/main
+
+Build Steps:
+echo %CD%
+set PYTHONPATH=%PYTHONPATH%;%CD%
+pip install -r Luma\requirements.txt
+cd Luma/tests
+pytest -v Test06ParametrizeSearch.py Test04UsePageObject.py Test07_ReadFromFileAndSearch.py Test08_LoginComposite.py Test11_CartPageMainOperation.py Test12_TestBuilder.py Test14_Decorator.py Test15_MapAndPickling.py --html=htmlreport.html
+
+URL Token:
+http://localhost:8081/job/PythonLuma/build?token=obbJenkinsTOKEN58349ksudfuisdHOspdosd
+
+cmd:
+curl http://admin:1152d2b60c2c304e57fee397f340b36a3b@localhost:8081/job/PythonLuma/build?token=obbJenkinsTOKEN58349ksudfuisdHOspdosd
+
+
+pytest -v -m "run_every_night" --html=htmlreport.html
