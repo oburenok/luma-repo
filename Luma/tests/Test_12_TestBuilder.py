@@ -13,7 +13,7 @@ pytestmark = [pytest.mark.run_every_night, pytest.mark.integration]
 def test_01_core_flow_1(driver):
 
     TestBuilder(driver, globl.url)\
-        .l_login("User1@gmail.com", "qwerty12345")\
+        .l_login("User2@gmail.com", "qwerty12345")\
         .r_search_product("Strike Endurance boy")\
         .r_count_products("9")\
         .r_search_product("Strike boy") \
